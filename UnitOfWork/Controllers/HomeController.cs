@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using UnitOfWork.Data.Cart;
+using UnitOfWork.Data.Services;
 using UnitOfWork.Models;
 
 namespace UnitOfWork.Controllers
@@ -8,14 +11,21 @@ namespace UnitOfWork.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProductServices _productServices;
+        //private readonly ShoppingCart _shoppingcart;
+
+        public HomeController(IProductServices productServices , ILogger<HomeController> logger)
         {
-            _logger = logger;
+            _productServices = productServices;
+             
         }
 
-        public IActionResult Index()
+
+       
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _productServices.GetAllProducts();
+            return View(result);
         }
 
         public IActionResult Privacy()
