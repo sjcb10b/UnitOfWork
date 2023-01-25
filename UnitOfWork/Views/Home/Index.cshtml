@@ -3,6 +3,14 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p> Order your items</p>
+</div>
+
+
+
 <div class="container">
         <div class="row">
             @foreach (var item in Model)
@@ -13,7 +21,7 @@
                    <div class="col-md-3 col-xs-3 border-primary mb-3">
                   <div class="card mb-3">
               
-                          <div class="card">
+                         @* <div class="card">
                               <img src="~/images/card.png" class="card-img-top" alt="...">
                               <div class="card-body">
                             <h2>@item.Title</h2>
@@ -21,16 +29,41 @@
                             <p class="card-text">@item.Description</p>
                             <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" class="btn btn-primary">Order Now !</a>
                               </div>
-                            </div>
+                          </div>*@
+
+                    <div class="card">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" class="img-fluid" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold"><a>@item.Title</a></h5>
+
+                            <p class="mb-2">$ Price @item.Price.ToString("c")</p>
+                            <p class="card-text">
+                                @item.Description
+                            </p>
+                           <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" class="btn btn-primary"> Order Now </a>
+                          </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
                   </div>
-                  </div>
+                
 
             }
         </div>
 </div>
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+

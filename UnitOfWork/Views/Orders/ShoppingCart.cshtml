@@ -4,11 +4,16 @@
 @{
     ViewData["Title"] = "Shopping cart summary";
 }
+<style>
+    .right {
+        text-align: right;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="text-center">
-            <h2>You shopping cart summary</h2>
+            <h2>Cart Summary</h2>
         </div>
 
         <table class="table">
@@ -29,16 +34,16 @@
                         <td class="align-middle">@item.products.Title</td>
                         <td class="align-middle">@item.products.Price.ToString("c")</td>
                         <td class="align-middle">@((item.Amount * item.products.Price).ToString("c"))</td>
-                        <td class="align-middle">
-                            <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
-                           asp-route-id="@item.products.Id">
-                                <i class="bi bi-cart-dash"></i>
-                            </a>
-                            |
-                            <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart"
-                           asp-route-id="@item.products.Id">
-                                <i class="bi bi-cart-plus"></i>
-                            </a>
+                        <td class="right">
+                            
+                            
+                            <a  asp-controller="Orders" asp-action="AddItemToShoppingCart"
+                           asp-route-id="@item.products.Id" class="btn btn-success">Add Item</a>
+                           | 
+                            <a  asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
+                           asp-route-id="@item.products.Id" class="btn btn-danger">Remove </a>
+                            
+                           
                         </td>
                     </tr>
                 }
@@ -50,23 +55,78 @@
                     <td>
                         @Model.ShoppingCartTotal.ToString("c")
                     </td>
-                    <td></td>
+                    <td>
+                        
+
+                    </td>
                 </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td class="right">
+                        <a class="btn btn-success" asp-action="CompleteOrder">Complete order</a>
+
+                        <br /><br />
+                           <div id="paypal-btn"></div>
+
+                    </td>
+                </tr>
+
             </tfoot>
+
+
+
         </table>
 
-        <div class="text-right">
-            <div class="btn-group">
-                @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
-                Complete order
-                </a>*@
-                <div id="paypal-btn"></div>
-                <span style="padding:5px"></span>
-                <a class="btn btn-outline-success" asp-controller="Home" asp-action="Index">
-                    Add more items
-                </a>
-            </div>
-        </div>
+
+
 
     </div>
 </div>
+
+
+
+
+@section Scripts{
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+        let _total = @Html.Raw(Model.ShoppingCartTotal);
+        paypal.Button.render({
+            //Configure environment
+            env: 'sandbox',
+            client: {
+                sandbox: 'AcKRtgL4i68EZ2ZYuYUx3ilihAg2YhL5dtF_m19A8MjBWVOn6ewNS4M_uV8gA3xi98zTcUq38gUHbVFx'
+            },
+            //Customize button
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill'
+            },
+            commit: true,
+            //Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: _total,
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            //Execute the payment
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                    window.location.href = url;
+                });
+            }
+        }, '#paypal-btn')
+    </script>
+}
