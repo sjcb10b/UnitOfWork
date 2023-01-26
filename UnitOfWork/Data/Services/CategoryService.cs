@@ -58,7 +58,7 @@ namespace UnitOfWork.Data.Services
 
         public async Task UpdateProductAsync(Category data)
         {
-            var result = await _context.categories.FirstOrDefaultAsync(c => c.Id == Id);
+            var result = await _context.categories.FirstOrDefaultAsync(c => c.Id == data.Id);
             if (result != null)
             {
                 result.Name = data.Name;
