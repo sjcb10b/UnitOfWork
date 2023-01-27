@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
+using System.Formats.Asn1;
 using UnitOfWork.Data.Base;
 using UnitOfWork.Models;
 
@@ -68,5 +70,20 @@ namespace UnitOfWork.Data.Services
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<IEnumerable<Category>> GetByCategoriesAsync(string categoryname)
+        {
+           var mycat = await _context.categories.FirstOrDefaultAsync(cat => cat.Name == categoryname);
+            return (IEnumerable<Category>)mycat;
+        }
+
+        //public async Task<IEnumerable<Category>> GetCategorybyName(string category)
+        //{
+
+        //    var mycate = await _context.categories.FirstOrDefaultAsync(c => c.Name == category);
+        //    return (IEnumerable<Category>)mycate;
+
+
+        //}
     }
 }

@@ -17,6 +17,9 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 builder.Services.AddScoped<IProductServices, ProductServices>();
 
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();

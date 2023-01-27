@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Products>
+﻿@model DisplayViews
 
 @{
     ViewData["Title"] = "Home Page";
@@ -9,15 +9,22 @@
                 <div class="text-center text-dark">
                     <h1 class="display-4 fw-bolder">Shop in style</h1>
                     <p class="lead fw-normal text-dark-50 mb-0">With this shop hompeage template</p>
-                </div>
+            @foreach(Category category in Model.categories)
+            {
+                <a href="Home/Displaycategory?category=@category.Name"> @category.Name </a><br />
+                
+            }
+        </div>
             </div>
         </header>
+
+ 
 
 
 
 <div class="container">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            @foreach (var item in Model)
+            @foreach (Products item in Model.Products)
             {
             <div class="col mb-5">
                 <div class="card h-100 rounded-9">
@@ -44,6 +51,3 @@
             }
         </div>
 </div>
-
-
-
