@@ -50,10 +50,13 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2"></td>
+                    <td>Total: @Model.GetTotalCartItems</td>
+                    <td></td>
                     <td><b>Total:</b></td>
                     <td>
                         @Model.ShoppingCartTotal.ToString("c")
+                     
+                       
                     </td>
                     <td>
                         

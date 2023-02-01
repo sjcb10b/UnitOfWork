@@ -14,6 +14,8 @@ namespace UnitOfWork.Models
         public int Qty { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public string slug => Title.Replace(' ', '-').ToLower();
+
 
     }
 }

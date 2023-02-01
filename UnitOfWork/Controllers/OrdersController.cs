@@ -31,7 +31,9 @@ namespace UnitOfWork.Controllers
             var response = new ShoppingCartVM()
             {
                 ShoppingCart = _shoppingCart,
-                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
+                GetTotalCartItems = (int)_shoppingCart.GetTotalCartItems()
+
             };
 
             return View(response);
@@ -47,6 +49,8 @@ namespace UnitOfWork.Controllers
             }
             return RedirectToAction(nameof(ShoppingCart));
         }
+
+
 
         public async Task<IActionResult> RemoveItemFromShoppingCart(int Id)
         {

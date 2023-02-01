@@ -8,6 +8,7 @@ namespace UnitOfWork.Models
         public int Id { get; set; }
         public Products products { get; set; }
         public int Amount { get; set; }
+        public int Qty { get; set; }
         public string ShoppingCartId { get; set; }
     }
 }

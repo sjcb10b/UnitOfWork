@@ -39,19 +39,47 @@ namespace UnitOfWork.Controllers
             return View(displayViews);
         }
 
+        public async Task<IActionResult> ProductDetail(int Id)
+        {
+           
+            if(Id == null)
+            {
+                return NotFound();
+            }
+           
+            var produId = await _productServices.GetByIdAsync(Id);
+            return View(produId);
+        }
 
 
-        //[HttpPost]
-        //public async  Task<IActionResult> DisplayCategory(string category)
-        //{
-        //    DisplayViews displayViews = new DisplayViews();
 
-        //    displayViews.categories  = (List<Category>) await _categoryService.GetByCategoriesAsync(category);  
 
-            
-        //    return View(displayViews);
 
-        //}
+        
+        [AllowAnonymous]
+        public async Task<IActionResult> DisplayCategory(string FilterCategory)
+        {
+            DisplayViews displayViews = new DisplayViews();
+
+            var allProducts = await _productServices.GetAllProducts(); //   .GetAllAsync(n => n.Category);
+
+            if (!string.IsNullOrEmpty(FilterCategory))
+            {
+                //var filteredResult = allMovies.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                 var filteredResultNew = allProducts.Where(n => string.Equals(n.Category, FilterCategory, StringComparison.CurrentCultureIgnoreCase)).ToList();
+               // var filteredResultNew = allProducts.Where(n => string.FilterCategory).ToList();
+
+                displayViews.Products = filteredResultNew;
+                displayViews.categories = (List<Category>)await _categoryService.GetAllAsync();
+                return View("DisplayCategory", displayViews);
+            }
+
+                displayViews.Products = allProducts.ToList();
+                displayViews.categories = (List<Category>)await _categoryService.GetAllAsync();
+                return View("DisplayCategory", allProducts);
+
+        }
 
         public IActionResult Privacy()
         {

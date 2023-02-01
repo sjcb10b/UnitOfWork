@@ -7,5 +7,9 @@ namespace UnitOfWork.Data.ViewModels
 
         public ShoppingCart ShoppingCart { get; set; }
         public double ShoppingCartTotal { get; set; }
+
+        public int GetTotalCartItems { get; set; }
+
+
     }
 }

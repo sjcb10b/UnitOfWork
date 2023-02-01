@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
+using System.Linq;
 using System.Security.Policy;
 using UnitOfWork.Migrations;
 using UnitOfWork.Models;
@@ -8,6 +10,8 @@ namespace UnitOfWork.Data.Cart
 {
     public class ShoppingCart
     {
+        private int totalItems;
+
         public ApplicationDbContext context { get; set; }
         public string ShoppingCartId { get; set; }
         public List<ShoppingCartItem> shoppingCartItems { get; set; }
@@ -39,7 +43,8 @@ namespace UnitOfWork.Data.Cart
                 {
                     ShoppingCartId = ShoppingCartId,
                     products = product,
-                    Amount = 1
+                    Amount = 1,
+                    Qty  = 1
                 };
 
                 context.shoppingCartItems.Add(shoppingCartItem);
@@ -77,6 +82,19 @@ namespace UnitOfWork.Data.Cart
             return shoppingCartItems ?? (shoppingCartItems = context.shoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Include(n => n.products).ToList());
         }
 
+
+
+        public double GetTotalCartItems()
+        {
+            var totalCartItems = context.shoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Select(p => p.Amount).Sum();
+            //var totalCartItems = 1;
+            return totalCartItems;
+
+        }
+
+
+
+
         public double GetShoppingCartTotal() => (double)context.shoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Select(n => n.products.Price * n.Amount).Sum();
 
         public async Task ClearShoppingCartAsync()
@@ -86,23 +104,7 @@ namespace UnitOfWork.Data.Cart
             await context.SaveChangesAsync();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+         
 
 
     }
