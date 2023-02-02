@@ -1,0 +1,62 @@
+﻿@model DisplayViews
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+  <header class="bg-gradient py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-dark">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-dark-50 mb-0">With this shop hompeage template</p>
+            @foreach(Category category in Model.categories)
+            {
+                @*<a href="Home/Displaycategory?FilterCategory=@category.Name"> @category.Name </a><br />*@
+
+                <a asp-action="DisplayFullCategory" asp-route-id="@category.Id" asp-route-slug="@category.slug"> @category.Name </a>
+
+                <br />
+
+
+            }
+        </div>
+            </div>
+        </header>
+
+ 
+
+
+
+<div class="container">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 justify-content-center">
+            @foreach (Products item in Model.Products)
+            {
+            <div class="col mb-5 rounded-9">
+                <div class="card h-100 ">
+                    <!-- Product image-->
+                        <div class="figure">
+                        <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
+                        <img class="card-img-top" src="~/images/images.jpg" alt="..." />
+                        <img class="card-img-top image-hover" src="~/images/salad1.jpg" alt="..." />
+                        </a>
+                         </div>
+
+                    <!-- Product details-->
+                    <div class="card-body">
+                        <div class="float-start"><h6> @item.Title  </h6>  </div>
+                        <div class="float-end">Price:  @item.Price.ToString("c")  </div><br>
+                         
+                         
+                  
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">BUY NOW !</a></div>
+                    </div>
+                </div>
+            </div>
+                
+
+            }
+        </div>
+</div>

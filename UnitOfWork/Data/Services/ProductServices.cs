@@ -29,6 +29,7 @@ namespace UnitOfWork.Data.Services
                 Description = data.Description,
                 Price = data.Price,
                 Qty = data.Qty,
+
                 CreatedDate = data.CreatedDate,
             };
             await _context.products.AddAsync(newProduct);

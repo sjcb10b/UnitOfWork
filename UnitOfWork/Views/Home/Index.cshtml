@@ -4,54 +4,218 @@
     ViewData["Title"] = "Home Page";
 }
 
-  <header class="bg-gradient py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-dark">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-dark-50 mb-0">With this shop hompeage template</p>
-            @foreach(Category category in Model.categories)
-            {
-                <a href="Home/Displaycategory?FilterCategory=@category.Name"> @category.Name </a><br /> 
-                
-            }
-        </div>
-            </div>
-        </header>
-
- 
-
-
-
-<div class="container">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 justify-content-center">
-            @foreach (Products item in Model.Products)
-            {
-            <div class="col mb-5 rounded-9">
-                <div class="card h-100 ">
-                    <!-- Product image-->
-                        <div class="figure">
-                        <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
-                        <img class="card-img-top" src="~/images/images.jpg" alt="..." />
-                        <img class="card-img-top image-hover" src="~/images/salad1.jpg" alt="..." />
-                        </a>
-                         </div>
-
-                    <!-- Product details-->
-                    <div class="card-body">
-                        <div class="float-start"><h6> @item.Title  </h6>  </div>
-                        <div class="float-end">Price:  @item.Price.ToString("c")  </div><br>
-                         
-                         
-                  
+<!--// banner corousel  -->
+<section class="banner_section" >
+    <div class="container">
+     <div class="row">
+          <div class="banner-content p-5" style="margin-top: 20% !important;">
+     
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="banner-contenta">
+                        <div class="d-sm-flex align-items-center justify-content-between">
+                            <div>
+                               
+                                <button class="natural">ENJOY OUR EVERY DAY SPECIALS</button> <br> <br>
+                                <h4>Family-Style Meals - $18 Wine Bottles* <br>$6 Take Homes* - 
+                                    Lunch-Sized Favorites <br> Italian-Inspired Cocktails
+                                <br><br>CHEERS TO YOUR WINE
+                                FAVORITES TO GO
+                                STARTING AT $18</h4>
+                                
+                            </div> 
+                             
+                       </div>
                     </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">BUY NOW !</a></div>
+              
+                  </div>
+               
+                 
+                </div>
+              </div>
+
+           </div>
+         </div>
+    </div>
+</section>
+<!-- banner section exit -->
+
+<!--// start products -->
+<section class="display_plates">
+    <div class="container p-5 text-center">
+        <div class="row">
+                <div class="col-12 text-center p-5">
+                    <h1>OUR FOOD</h1>
+                    <P class="p2">If you are looking for a restaurant to host your next event or party, then check out our fantastic banquet rooms at Buca.
+                         Our fun and festive semi-private dining rooms are uniquely decorated, comfortable, and inviting, making Broccli's in Dallas, TX the perfect place for hosting a large banquet or an intimate gathering.</P>
+                </div>
+
+            <div class="col-lg-3 col-sm-6 mb5 ">
+                <H1>Lunch</H1>
+                <div class="card product-card">
+                    
+                    <div class="product-img">
+                        <img src="images/lunch.jpg" class="img-fluid rounded-xl">
+                        
                     </div>
                 </div>
             </div>
-                
-
-            }
+            <div class="col-lg-3 col-sm-6 mb5">
+                <H1>Dinner</H1>
+                <div class="product-img">
+                    <img src="images/dinner.jpg" class="img-fluid rounded-xl">
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb5">
+                <H1>Daily</H1>
+                <div class="product-img">
+                    <img src="images/daily.jpg" class="img-fluid rounded-xl">
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb5">
+                <H1>Salads</H1>
+                <div class="product-img">
+                    <img src="images/salad.jpg" class="img-fluid rounded-xl">
+                </div>
+            </div>
+            
         </div>
-</div>
+    </div>
+</section>
+<!-- end products -->
+<!--// start about -->
+
+
+
+<section class="about-us-text">
+    <div class="container">
+        
+            <div class="row align-items-center py-5">
+                        <div class="col-lg-6 col-12 mb-4">
+                            <img src="images/about-img.jpg" class="img-fluid rounded-xl">
+                        </div>
+                    
+                    
+                        <div class="col-lg-6 col-12 mb-4 m-0">
+                            <div class="description-about">
+                                
+                                <h1>ABOUT US</h1>
+
+                                Inviting Atmosphere, Passionate Service, and the Best Italian Culinary Experience
+
+                                Brolli's is a family restaurant serving authentic Italian dishes including made-from-scratch pizzas, home-style pastas and traditional Italian chicken, 
+                                seafood and veal dishes.  We have been a main staple of the Southlake community since 1998 and continue the tradition of crafting amazing dishes using 
+                                our family recipe and the highest quality ingredients.<BR><BR>  No wonder Brolli's continues to be recognized as the Best Italian Restaurant by many local magazines.  
+                                Bring your family and friends in for any occasion for amazing service and great food!  Don’t forget to Bring Your Own Bottle of favorite spirits!
+                        </div>
+                    </div> 
+                    
+            </div>   
+ </div>
+</section>
+
+<!--// end of the section -->
+
+<section class="about_gallery">
+      <div class="container">
+        <div class="row">
+            <div class="col-12 text-center p-5">
+                <h1>Gallery </h1>
+                <P class="p2">
+                    Come and dine with us and see why BROLLI'S was voted: "The Best Neighborhood Italian Restaurant" in Dallas, TX by Dallas D Magazine! 
+                </p>
+            </div>
+
+            <!---display -->
+
+            <div class="col-sm-6 col-lg-4 mb-4">
+                 
+                    <img src="images/gallery-1.jpg" class="img-fluid rounded-xl ">
+                
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+           
+                    <img src="images/gallery-2.jpg" class="img-fluid rounded-xl">
+               
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                 
+                    <img src="images/gallery-3.jpg" class="img-fluid rounded-xl">
+                
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+         
+                    <img src="images/gallery-4.jpg" class="img-fluid rounded-xl">
+      
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                 
+                    <img src="images/gallery-5.jpg" class="img-fluid rounded-xl">
+                 
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                
+                    <img src="images/gallery-6.jpg" class="img-fluid rounded-xl">
+                
+            </div>
+            <!--end display-->
+
+
+        </div>
+        
+     </div>
+</section>
+
+<!--// start about -->
+
+
+
+
+    <!--Product Section start -->
+    <section class="product_section">
+        <div class="container">
+            
+        
+            <div class="row align-items-center py-5">
+                <div class="col-xl-7 col-lg-6 col-12 mb-5  order-2 order-lg-1">
+                    <div class="product-content">
+                        <h1>CATERING SERVICE</h1>
+                        <div class="product-details">
+                            <p>
+
+                               <H2> BUSINESS CATERING</H2>
+EVENT CATERING BRIDAL CATERING
+Catering everyone will love, with convenient delivery and setup, starting at $12 per person.*
+<BR>
+Celebrate life's special moments
+with a meal everyone will love.
+
+<BR>
+
+Holiday Parties, 
+Office Meetings, 
+Employee Appreciation.
+
+<BR><BR>
+    <H2>EVENT CATERING</H2>
+    Celebrate life's special moments
+with a meal everyone will love.<BR>
+Birthday, 
+Anniversary, 
+Family & Friends Gathering, 
+School Function.
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-6 col-12 mb-5 order-1 order-lg-2">
+                    <div class="card border-0 ms-lg-5">
+                        
+                        <img src="images/catering-service.jpg" alt="products" class="img-fluid rounded-xl">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>

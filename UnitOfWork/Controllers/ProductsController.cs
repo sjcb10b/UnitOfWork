@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UnitOfWork.Data;
 using UnitOfWork.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace UnitOfWork.Controllers
 {
@@ -47,7 +46,6 @@ namespace UnitOfWork.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["Category"] = new SelectList(_context.categories, "Name", "Name");
             return View();
         }
 
@@ -56,7 +54,7 @@ namespace UnitOfWork.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Price,Qty,CreatedDate, Category")] Products products)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,CreatedDate")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -64,9 +62,6 @@ namespace UnitOfWork.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-
-
             return View(products);
         }
 
@@ -83,7 +78,6 @@ namespace UnitOfWork.Controllers
             {
                 return NotFound();
             }
-            ViewData["Category"] = new SelectList(_context.categories, "Name", "Name", products.Category);
             return View(products);
         }
 
@@ -92,7 +86,7 @@ namespace UnitOfWork.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Price,Qty,CreatedDate,Category")] Products products)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,CreatedDate")] Products products)
         {
             if (id != products.Id)
             {

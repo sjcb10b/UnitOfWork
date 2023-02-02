@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using UnitOfWork.Data.Cart;
 using UnitOfWork.Data.Services;
+using UnitOfWork.Migrations;
 using UnitOfWork.Models;
 
 namespace UnitOfWork.Controllers
@@ -52,11 +53,33 @@ namespace UnitOfWork.Controllers
         }
 
 
-
-
-
-        
         [AllowAnonymous]
+
+        public async Task<IActionResult> DisplayFullCategory(int Id, string? Slug)
+        {
+            DisplayViews displayViews = new DisplayViews();
+            var allProducts = await _productServices.GetAllProducts();
+
+            if (Id == null && Slug == null)
+            {
+                return NotFound();
+            }
+
+            var filteredResultNew = allProducts.Where(n => string.Equals(n.Category, Slug, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            // var filteredResultNew = allProducts.Where(n => string.FilterCategory).ToList();
+
+            displayViews.Products = filteredResultNew;
+            displayViews.categories = (List<Category>)await _categoryService.GetAllAsync();
+            return View("DisplayCategory", displayViews);
+
+        }
+
+
+
+
+
+
+            [AllowAnonymous]
         public async Task<IActionResult> DisplayCategory(string FilterCategory)
         {
             DisplayViews displayViews = new DisplayViews();

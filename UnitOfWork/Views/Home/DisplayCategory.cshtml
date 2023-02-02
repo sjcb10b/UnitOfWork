@@ -8,21 +8,23 @@
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         @foreach (Products item in Model.Products)
         {
-            <div class="col mb-5">
-                <div class="card h-100 rounded-9">
+            <div class="col mb-5 rounded-9">
+                <div class="card h-100 ">
                     <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">@item.Title</h5>
-                            <p class="card-text">@item.Description</p>
-                            <p class="card-text">@item.Category</p>
+                    <div class="figure">
+                        <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
+                            <img class="card-img-top" src="~/images/images.jpg" alt="..." />
+                            <img class="card-img-top image-hover" src="~/images/salad1.jpg" alt="..." />
+                        </a>
+                    </div>
 
-                            <!-- Product price-->
-                            Price:  @item.Price.ToString("c")
-                        </div>
+                    <!-- Product details-->
+                    <div class="card-body">
+                        <div class="float-start"><h6> @item.Title  </h6>  </div>
+                        <div class="float-end">Price:  @item.Price.ToString("c")  </div><br>
+
+
+
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
