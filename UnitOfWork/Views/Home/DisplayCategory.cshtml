@@ -1,39 +1,56 @@
-﻿@model DisplayViews
+﻿ @model DisplayViews 
+
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        @foreach (Products item in Model.Products)
-        {
-            <div class="col mb-5 rounded-9">
-                <div class="card h-100 ">
-                    <!-- Product image-->
-                    <div class="figure">
-                        <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
-                            <img class="card-img-top" src="~/images/images.jpg" alt="..." />
-                            <img class="card-img-top image-hover" src="~/images/salad1.jpg" alt="..." />
-                        </a>
-                    </div>
-
-                    <!-- Product details-->
-                    <div class="card-body">
-                        <div class="float-start"><h6> @item.Title  </h6>  </div>
-                        <div class="float-end">Price:  @item.Price.ToString("c")  </div><br>
 
 
+ <section class="display_plates">
+    <div class="container p-5 text-center">
+        <div class="row">
+                <div class="col-12 text-center p-5">
 
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">BUY NOW !</a></div>
-                    </div>
+
+                <h1>Our Menu </h1>
+          
+                    <P class="p2">If you are looking for a restaurant to host your next event or party, then check out our fantastic banquet rooms at Buca.
+                         Our fun and festive semi-private dining rooms are uniquely decorated, comfortable, and inviting, making Broccli's in Dallas, TX the perfect place for hosting a large banquet or an intimate gathering.</P>
                 </div>
-            </div>
+            @foreach (Products item in Model.Products)
+            {
 
 
-        }
+                  <div class="col-lg-3 col-sm-6 mb5 ">
+                    <H3>@item.Title</H3>
+                    <div class="card product-card">
+
+                        <div class="product-img">
+                            
+                         <div class="figure">
+                        <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
+                        <img class="card-img-top" src="~/images/images.jpg" alt="..." />
+                        <img class="card-img-top image-hover" src="~/images/salad1.jpg" alt="..." />
+                        </a>
+                         </div>
+
+                                <div class="card-body">
+                                    <div class="float-start"><h6> @item.Title  </h6>  </div>
+                                    <div class="float-end">Price:  @item.Price.ToString("c")  </div><br>
+
+                                </div>
+
+                        </div>
+                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">BUY NOW !</a></div>
+                  </div>
+                    </div>
+                  </div>
+
+            }
+
+
+        </div>
     </div>
-</div>
+</section>

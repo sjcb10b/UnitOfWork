@@ -40,13 +40,15 @@
 
 body,
 html {
+    font-family: 'Lato', sans-serif;
     background-color: var(--bg-white);
-    color: var(--primary-color-text);
+    color: #484848;
     font-size: 14px;
     font-weight: 500;
     font-family: var(--primary-font);
     scroll-behavior: smooth;
     line-height: 2;
+    font-weight: 700;
 }
 
 
@@ -183,6 +185,28 @@ h1 {
 
 .rounded-xl {
     border-radius: .5rem;
+}
+
+/*  Rollover image styles  */
+.figure {
+    position: relative;
+    /*width: 360px;*/ /* can be omitted for a regular non-lazy image */
+    max-width: 100%;
+}
+
+.figure img.image-hover {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        object-fit: contain;
+        opacity: 0;
+        transition: opacity .2s;
+}
+
+.figure:hover img.image-hover {
+        opacity: 5;
 }
 
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using System.Diagnostics;
 using UnitOfWork.Data.Cart;
 using UnitOfWork.Data.Services;
@@ -59,6 +60,8 @@ namespace UnitOfWork.Controllers
         {
             DisplayViews displayViews = new DisplayViews();
             var allProducts = await _productServices.GetAllProducts();
+           
+
 
             if (Id == null && Slug == null)
             {
@@ -66,10 +69,10 @@ namespace UnitOfWork.Controllers
             }
 
             var filteredResultNew = allProducts.Where(n => string.Equals(n.Category, Slug, StringComparison.CurrentCultureIgnoreCase)).ToList();
-            // var filteredResultNew = allProducts.Where(n => string.FilterCategory).ToList();
-
             displayViews.Products = filteredResultNew;
-            displayViews.categories = (List<Category>)await _categoryService.GetAllAsync();
+            
+
+
             return View("DisplayCategory", displayViews);
 
         }

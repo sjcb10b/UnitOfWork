@@ -46,6 +46,8 @@ namespace UnitOfWork.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+
+            ViewData["CategoryName"] = new SelectList(_context.categories, "Name", "Name");
             return View();
         }
 
@@ -78,6 +80,7 @@ namespace UnitOfWork.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoryName"] = new SelectList(_context.categories, "Name", "Name", products.Category);
             return View(products);
         }
 
