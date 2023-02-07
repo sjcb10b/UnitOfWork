@@ -3,9 +3,109 @@
 
 
 
-Here is the product detail @Model.Title<br />
-@Model.Category
 
-<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">BUY NOW !</a></div>
+
+<section class="display_plates">
+    <div class="container p-5 text-center">
+
+        <div class="row">
+
+
+               <div class="col-12 text-center p-5">
+                          
+                    <span class="colorh1"> @Model.Category</span>
+            
+                    <P class="p2">If you are looking for a restaurant to host your next event or party, then check out our fantastic banquet rooms at Buca.
+                         Our fun and festive semi-private dining rooms are uniquely decorated, comfortable, and inviting, making Broccli's in Dallas, TX the perfect place for hosting a large banquet or an intimate gathering.</P>
+                </div>
+
+
+            <div class="col">
+                <div class="product-img">
+                    <img class="card-img-top rounded-xl" src="~/images/images.jpg" alt="..." />
+
+                </div>
+
+                
+            </div>
+            <div class="col">
+                <span class="colorh1"> @Model.Title</span>
+                <div style="display:block"></div>
+                @Model.Description
+
+
+                <span>Quantity</span>
+
+                @if (Model.YesNo == 1){
+
+
+                    
+                    <div class="form-group">
+                        <label asp-for="@Model.Option1" class="control-label"></label>
+                        <select asp-for="@Model.Option1" class="form-control" asp-items="ViewBag.option11">
+                            <option value=""> --- Select Option ---</option>
+                        </select>
+                        <span asp-validation-for="@Model.Option1" class="text-danger"></span>
                     </div>
+
+                   <div class="form-group">
+                        <label asp-for="@Model.Option2" class="control-label"></label>
+                        <select asp-for="@Model.Option2" class="form-control" asp-items="ViewBag.option22">
+                            <option value=""> --- Select Option ---</option>
+                        </select>
+                        <span asp-validation-for="@Model.Option2" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Option3" class="control-label"></label>
+                        <select asp-for="@Model.Option3" class="form-control" asp-items="ViewBag.option33">
+                            <option value=""> --- Select Option ---</option>
+                        </select>
+                        <span asp-validation-for="@Model.Option3" class="text-danger"></span>
+                    </div>
+
+                      <div class="form-group">
+                        <label asp-for="@Model.Option4" class="control-label"></label>
+                        <select asp-for="@Model.Option4" class="form-control" asp-items="ViewBag.option44">
+                            <option value=""> --- Select Option ---</option>
+                        </select>
+                        <span asp-validation-for="@Model.Option4" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.Option5" class="control-label"></label>
+                        <select asp-for="@Model.Option5" class="form-control" asp-items="ViewBag.option55">
+                            <option value=""> --- Select Option ---</option>
+                        </select>
+                        <span asp-validation-for="@Model.Option5" class="text-danger"></span>
+                    </div>
+                      <div class="form-group">
+                        <label asp-for="@Model.Option6" class="control-label"></label>
+                        <select asp-for="@Model.Option6" class="form-control" asp-items="ViewBag.option66">
+                            <option value=""> --- Select Option ---</option>
+                        </select>
+                        <span asp-validation-for="@Model.Option6" class="text-danger"></span>
+                    </div>
+
+
+
+            
+                   }else{
+                       <br />
+                       <span>UPS!</span>
+                       <br />
+                }
+
+
+
+
+
+
+                <a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">BUY NOW !</a>
+            </div>
+
+             
+        </div>
+   </div>
+</section>
+

@@ -35,7 +35,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.ImageB)
             </th>
+
             <th>
+                @Html.DisplayNameFor(model => model.YesNo)
+            </th>
+
+            <th>
+
                 @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
             <th></th>
@@ -65,6 +71,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ImageB)
             </td>
+                <td>
+                    @if (item.YesNo == 1)
+                    {
+                        <div>Yes</div> 
+                    }
+                    else
+                    {
+                        <div>No</div>
+                    }
+
+                    @*@Html.DisplayFor(modelItem => item.YesNo)*@
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
             </td>

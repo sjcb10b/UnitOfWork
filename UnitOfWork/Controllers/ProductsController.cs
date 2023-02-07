@@ -48,6 +48,11 @@ namespace UnitOfWork.Controllers
         {
 
             ViewData["CategoryName"] = new SelectList(_context.categories, "Name", "Name");
+
+            ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno");
+
+
+
             return View();
         }
 
@@ -56,7 +61,7 @@ namespace UnitOfWork.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,CreatedDate")] Products products)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,YesNo,CreatedDate")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -81,6 +86,8 @@ namespace UnitOfWork.Controllers
                 return NotFound();
             }
             ViewData["CategoryName"] = new SelectList(_context.categories, "Name", "Name", products.Category);
+            ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno", products.YesNo);
+
             return View(products);
         }
 
@@ -89,7 +96,7 @@ namespace UnitOfWork.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,CreatedDate")] Products products)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,YesNo, CreatedDate")] Products products)
         {
             if (id != products.Id)
             {

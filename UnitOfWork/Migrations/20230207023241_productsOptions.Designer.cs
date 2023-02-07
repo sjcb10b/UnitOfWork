@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnitOfWork.Data;
 
@@ -11,9 +12,11 @@ using UnitOfWork.Data;
 namespace UnitOfWork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230207023241_productsOptions")]
+    partial class productsOptions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,26 +249,6 @@ namespace UnitOfWork.Migrations
                     b.ToTable("categories");
                 });
 
-            modelBuilder.Entity("UnitOfWork.Models.DisplayYesNo", b =>
-                {
-                    b.Property<int>("Iyn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Iyn"));
-
-                    b.Property<int>("optionsyesno")
-                        .HasColumnType("int");
-
-                    b.Property<string>("yesno")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Iyn");
-
-                    b.ToTable("displayYesNo");
-                });
-
             modelBuilder.Entity("UnitOfWork.Models.OrdersCart", b =>
                 {
                     b.Property<int>("OrderId")
@@ -312,37 +295,6 @@ namespace UnitOfWork.Migrations
                     b.HasKey("OrderId");
 
                     b.ToTable("ordersCarts");
-                });
-
-            modelBuilder.Entity("UnitOfWork.Models.ProductOptions", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("option11")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("option22")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("option33")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("option44")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("option55")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("option66")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductOptions");
                 });
 
             modelBuilder.Entity("UnitOfWork.Models.Products", b =>
@@ -396,9 +348,6 @@ namespace UnitOfWork.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("YesNo")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

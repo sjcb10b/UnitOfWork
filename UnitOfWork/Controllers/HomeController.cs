@@ -19,15 +19,19 @@ namespace UnitOfWork.Controllers
 
         private readonly IProductServices _productServices;
         private readonly ICategoryService _categoryService;
+        private readonly IProductOptionsService _productOptionsService;
+
         private readonly ApplicationDbContext _context;
         //private readonly ShoppingCart _shoppingcart;
 
-        public HomeController(IProductServices productServices , ILogger<HomeController> logger, ICategoryService categoryService)
+        public HomeController(IProductServices productServices , ILogger<HomeController> logger, ICategoryService categoryService, IProductOptionsService productOptionsService)
         {
             _productServices = productServices;
             _logger = logger;
             _categoryService = categoryService;
-             
+            _productOptionsService = productOptionsService;
+
+
         }
 
 
@@ -52,6 +56,13 @@ namespace UnitOfWork.Controllers
                 return NotFound();
             }
              var produId = await _productServices.GetByIdAsync(Id);
+
+            ViewData["option11"] = new SelectList(await _productOptionsService.GetAllProductOptions(), "option11", "option11");
+            ViewData["option22"] = new SelectList(await _productOptionsService.GetAllProductOptions(), "option22", "option22");
+            ViewData["option33"] = new SelectList(await _productOptionsService.GetAllProductOptions(), "option22", "option33");
+            ViewData["option44"] = new SelectList(await _productOptionsService.GetAllProductOptions(), "option22", "option44");
+            ViewData["option55"] = new SelectList(await _productOptionsService.GetAllProductOptions(), "option22", "option55");
+            ViewData["option66"] = new SelectList(await _productOptionsService.GetAllProductOptions(), "option22", "option66");
             return View(produId);
         }
 

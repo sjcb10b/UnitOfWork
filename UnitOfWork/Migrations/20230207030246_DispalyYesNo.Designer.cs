@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnitOfWork.Data;
 
@@ -11,9 +12,11 @@ using UnitOfWork.Data;
 namespace UnitOfWork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230207030246_DispalyYesNo")]
+    partial class DispalyYesNo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,10 +260,6 @@ namespace UnitOfWork.Migrations
                     b.Property<int>("optionsyesno")
                         .HasColumnType("int");
 
-                    b.Property<string>("yesno")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Iyn");
 
                     b.ToTable("displayYesNo");
@@ -316,11 +315,11 @@ namespace UnitOfWork.Migrations
 
             modelBuilder.Entity("UnitOfWork.Models.ProductOptions", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OID"));
 
                     b.Property<string>("option11")
                         .HasColumnType("nvarchar(max)");
@@ -340,7 +339,7 @@ namespace UnitOfWork.Migrations
                     b.Property<string>("option66")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("OID");
 
                     b.ToTable("ProductOptions");
                 });

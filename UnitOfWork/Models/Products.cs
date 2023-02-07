@@ -1,4 +1,5 @@
-﻿using UnitOfWork.Data.Base;
+﻿using System.ComponentModel;
+using UnitOfWork.Data.Base;
 
 namespace UnitOfWork.Models
 {
@@ -14,7 +15,16 @@ namespace UnitOfWork.Models
         public int Qty { get; set; }
         public string? ImageA { get; set; }
         public string? ImageB { get; set; }
+        [DisplayName("Yes/No ")]
+        public int? YesNo { get; set; } = 1;
+
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public string? Option1 { get; set; }
+        public string? Option2 { get; set; }
+        public string? Option3 { get; set; }
+        public string? Option4 { get; set; }
+        public string? Option5 { get; set; }
+        public string? Option6 { get; set; }
         public string slug => Title.Replace(' ', '-').ToLower();
 
     }
