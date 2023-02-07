@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using NuGet.DependencyResolver;
 using System.Diagnostics;
+using UnitOfWork.Data;
 using UnitOfWork.Data.Cart;
 using UnitOfWork.Data.Services;
 using UnitOfWork.Migrations;
@@ -15,7 +19,7 @@ namespace UnitOfWork.Controllers
 
         private readonly IProductServices _productServices;
         private readonly ICategoryService _categoryService;
-
+        private readonly ApplicationDbContext _context;
         //private readonly ShoppingCart _shoppingcart;
 
         public HomeController(IProductServices productServices , ILogger<HomeController> logger, ICategoryService categoryService)
@@ -43,13 +47,11 @@ namespace UnitOfWork.Controllers
 
         public async Task<IActionResult> ProductDetail(int Id)
         {
-           
             if(Id == null)
             {
                 return NotFound();
             }
-           
-            var produId = await _productServices.GetByIdAsync(Id);
+             var produId = await _productServices.GetByIdAsync(Id);
             return View(produId);
         }
 
@@ -59,19 +61,19 @@ namespace UnitOfWork.Controllers
         public async Task<IActionResult> DisplayFullCategory(int Id, string? Slug)
         {
             DisplayViews displayViews = new DisplayViews();
-            var allProducts = await _productServices.GetAllProducts();
-           
 
+            var oneCat = await _productServices.GetByIdAsync(Id);
+            var allProducts = await _productServices.GetAllProducts();
 
             if (Id == null && Slug == null)
             {
                 return NotFound();
             }
-
+             
             var filteredResultNew = allProducts.Where(n => string.Equals(n.Category, Slug, StringComparison.CurrentCultureIgnoreCase)).ToList();
             displayViews.Products = filteredResultNew;
-            
-
+            // model display view Products product
+            displayViews.Productview = oneCat;
 
             return View("DisplayCategory", displayViews);
 

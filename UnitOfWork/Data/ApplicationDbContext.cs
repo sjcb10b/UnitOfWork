@@ -16,6 +16,8 @@ namespace UnitOfWork.Data
         public DbSet<ShoppingCartItem> shoppingCartItems { get; set;}
 
         public DbSet<Category> categories { get; set; }
+        public DbSet<OrdersCart> ordersCarts { get; set; }
+
 
 
 

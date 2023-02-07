@@ -64,6 +64,15 @@ namespace UnitOfWork.Controllers
         }
 
 
+        public async Task<IActionResult> CheckOut()
+        {
+
+
+
+            return View();
+        }
+
+
 
         //public async Task<IActionResult> CompleteOrder()
         //{
