@@ -11,7 +11,7 @@ namespace UnitOfWork.Models
         public string Title { get; set; }
         public string? Description { get; set; }
         public string Category { get; set; }
-        public decimal Price { get; set; }
+        public float Price { get; set; }
         public int Qty { get; set; }
         public string? ImageA { get; set; }
         public string? ImageB { get; set; }

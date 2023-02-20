@@ -21,6 +21,9 @@ namespace UnitOfWork.Data.Services
         }
 
 
+       
+
+
         public async Task AddProductAsync(Products data)
         {
             var newProduct = new Products
@@ -85,6 +88,13 @@ namespace UnitOfWork.Data.Services
 
         }
 
-        
+       
+
+        //public async Task<Products> GetProductsSlugAsync(string slug)
+        //{
+        //    var allp = await _context.products.FirstOrDefaultAsync(n => n.slug == slug);
+        //    return allp;
+
+        //}
     }
 }

@@ -47,7 +47,7 @@ namespace UnitOfWork.Controllers
         public IActionResult Create()
         {
 
-            ViewData["CategoryName"] = new SelectList(_context.categories, "Name", "Name");
+            ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name");
 
             ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno");
 
@@ -85,7 +85,7 @@ namespace UnitOfWork.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryName"] = new SelectList(_context.categories, "Name", "Name", products.Category);
+            ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name", products.Category);
             ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno", products.YesNo);
 
             return View(products);

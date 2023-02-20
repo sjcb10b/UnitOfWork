@@ -15,6 +15,7 @@ namespace UnitOfWork.Models
         public int DisplayOrder { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string? ImageCategoryA { get; set; }
-        public string slug => Name.Replace(' ', '-').ToLower();
-     }
+        //public string slug => Name.Replace(' ', '-').ToLower();
+        public string? slug { get; set; }
+    }
 }

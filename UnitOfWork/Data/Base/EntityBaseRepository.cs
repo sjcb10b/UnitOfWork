@@ -35,6 +35,9 @@ namespace UnitOfWork.Data.Base
 
         public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
 
+        public async Task<IEnumerable<T>> GetLastAsync() => (IEnumerable<T>)await _context.Set<T>().LastOrDefaultAsync();
+
+
 
 
         public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)

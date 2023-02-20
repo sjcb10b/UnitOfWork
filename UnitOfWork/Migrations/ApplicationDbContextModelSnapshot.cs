@@ -241,6 +241,9 @@ namespace UnitOfWork.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("slug")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("categories");
@@ -268,48 +271,49 @@ namespace UnitOfWork.Migrations
 
             modelBuilder.Entity("UnitOfWork.Models.OrdersCart", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ZipCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("OrderId");
+                    b.Property<string>("ccc_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ccc_number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("cvv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("expiration")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("ordersCarts");
                 });
@@ -387,8 +391,8 @@ namespace UnitOfWork.Migrations
                     b.Property<string>("Option6")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<int>("Qty")
                         .HasColumnType("int");
@@ -421,6 +425,24 @@ namespace UnitOfWork.Migrations
 
                     b.Property<string>("ShoppingCartId")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options6")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("productsId")

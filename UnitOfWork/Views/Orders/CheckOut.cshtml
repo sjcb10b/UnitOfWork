@@ -1,64 +1,245 @@
-﻿@model UnitOfWork.Models.OrdersCart
+﻿@*@using static UnitOfWork.Data.ViewModels.ShoppingCartVM
+@model UnitOfWork.Models.OrdersCart
+*@
+@using UnitOfWork.Data.ViewModels;
+@model ShoppingCartVM
+
+
+ 
+
+<!--// banner corousel  -->
+<div style="display:block; margin-bottom:30px;"></div>
+<section class="banner_sectionab">
+    <div class="container">
+        <div class="row">
+            <div style="display:block; margin-bottom:30px;"></div>
+               <div class="col-12 text-center p-5">
+                    <h1>OUR FOOD</h1>
+                    <P class="p2">If you are looking for a restaurant to host your next event or party, then check out our fantastic banquet rooms at Buca.
+                         Our fun and festive semi-private dining rooms are uniquely decorated, comfortable, and inviting, making Broccli's in Dallas, TX the perfect place for hosting a large banquet or an intimate gathering.</P>
+                </div>
+
+            <!-- strt form -->
+             
+            <div class="col-7">
+                <!-- div start -->
+                <div class="container">
+                        <form method="post" action="/orders/FinalCheckOut" id="myform">
+                        <h2>Please fill out the form </h2>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" placeholder="First Name" name="FirstName" id="FirstName">
+                                        <span id="error_fname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" placeholder="Last Name" name="LastName" id="LastName">
+                                        <span id="error_lname" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input name="text" class="form-control" name="Phone" id="Phone" placeholder="Phone Number">
+                                    <span id="error_phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" placeholder="Street" name="Street" id="Street">
+                                        <span id="error_street" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" id="City" name="City" placeholder="City">
+                                        <span id="error_city" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" placeholder="State" name="State" id="State">
+                                        <span id="error_state" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" id="ZipCode" name="ZipCode" placeholder="Zip Code">
+                                        <span id="error_zip" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 text-left p-3">
+                            <h2>Credit Card Information</h2>
+                            <hr>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <input type="text" class="form-control" id="ccc_name" name="ccc_name" placeholder="Name on card">
+                                        <span id="error_ccc_name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <input type="text" class="form-control" id="ccc_number" name="ccc_number" placeholder="Credit Card Number">
+                                        <span id="error_ccc_number" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" id="expiration" name="expiration" placeholder="Expiration">
+                                        <span id="error_expiration" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group p-3">
+
+                                    <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV">
+                                        <span id="error_cvv" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                            <div class="col-12 text-left p-3">
+                                
+                                <hr>
+                            </div>
+
+                        <div class="col-12 text-center p-5">
+                            <h1> </h1>
+                            <P class="p2">
+                                
+                            </P>
+                        </div>
+
+
+                        
+                    </form>
+                </div>
+            </div><!-- div end -->
+            <!-- end form -->
+            <!-- start display cart -->
+            <div class="col-5">
+                <!-- div start -->
+                <div class="container">
+                    <h2>Shopping Cart Details</h2>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                     
+                                    <th>Product</th>
+                                    
+                                    <th>Subtotal</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ShoppingCart.shoppingCartItems)
+                                {
+                                    <tr>
+                                       
+                                        <td class="align-middle">
+                                            @item.products.Title<br>
+                                            Items:<br>
+                                            @if(item.options1 != null)
+                                            {
+                                               @item.options1<br>  
+                                            }
+                                            @if(item.options2 != null)
+                                            {
+                                               @item.options2<br>  
+                                            }
+                                            @if (item.options3 != null)
+                                            {
+                                                @item.options3<br>
+                                            }
+                                            @if (item.options4 != null)
+                                            {
+                                                @item.options4<br>
+                                            }
+                                            @if (item.options5 != null)
+                                            {
+                                                @item.options5<br>
+                                            }
+                                            @if (item.options6 != null)
+                                            {
+                                                @item.options6<br>
+                                            }
+
+                                           
+                                             
+
+                                        </td>
+                                      
+                                        <td class="align-middle">@((item.Amount * item.products.Price).ToString("c"))</td>
+                                         
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total: @Model.GetTotalCartItems</td>
+                                    <td>
+
+                                        <b>Total:</b>
+                                        @Model.ShoppingCartTotal.ToString("c")
+                                    </td>
+                                   
+                                </tr>
+                                 
+
+                            </tfoot>
 
 
 
-<div style="display:block"></div>
-<div class="container" style="margin-top: 10%;">
+                        </table>
+                    </div>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Company" class="control-label"></label>
-                <input asp-for="Company" class="form-control" />
-                <span asp-validation-for="Company" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Street" class="control-label"></label>
-                <input asp-for="Street" class="form-control" />
-                <span asp-validation-for="Street" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ZipCode" class="control-label"></label>
-                <input asp-for="ZipCode" class="form-control" />
-                <span asp-validation-for="ZipCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group  text-right">
+
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                             
+                                <input type="submit" name="submit" class="btn btn-primary" id="finalpayment" value="Final  Payment" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   
+            </div><!-- div end -->
+            <!-- end  display cart -->
+        </div>
     </div>
-</div>
-
-</div>
+    </section>

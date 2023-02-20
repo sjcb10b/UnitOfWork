@@ -38,7 +38,16 @@
                 {
                     <tr>
                         <td class="align-middle">@item.Amount</td>
-                        <td class="align-middle">@item.products.Title</td>
+                        <td class="align-middle">@item.products.Title
+                              Items:<br>
+                              @item.options1<br>
+                              @item.options2<br>
+                              @item.options3<br>
+                              @item.options4<br>
+                              @item.options5<br>
+                              @item.options6<br>
+
+                        </td>
                         <td class="align-middle">@item.products.Price.ToString("c")</td>
                         <td class="align-middle">@((item.Amount * item.products.Price).ToString("c"))</td>
                         <td class="right">

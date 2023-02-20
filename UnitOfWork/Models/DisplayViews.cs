@@ -1,4 +1,4 @@
-﻿namespace UnitOfWork.Models
+﻿                        namespace UnitOfWork.Models
 {
     public class DisplayViews
     {
@@ -8,6 +8,7 @@
         public List<Category> categories { get; set; }
 
         public Products Productview { get; set; }
+        public Category singlecategory { get; set; }
 
 
     }

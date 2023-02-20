@@ -69,22 +69,27 @@ namespace UnitOfWork.Controllers
 
         [AllowAnonymous]
 
-        public async Task<IActionResult> DisplayFullCategory(int Id, string? Slug)
+        public async Task<IActionResult> DisplayFullCategory(int Id, string? slug)
         {
             DisplayViews displayViews = new DisplayViews();
 
-            var oneCat = await _productServices.GetByIdAsync(Id);
+            var oneCat = await _categoryService.GetByIdAsync(Id);
+
             var allProducts = await _productServices.GetAllProducts();
 
-            if (Id == null && Slug == null)
+            if (Id == null && slug == null)
             {
                 return NotFound();
             }
              
-            var filteredResultNew = allProducts.Where(n => string.Equals(n.Category, Slug, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            var filteredResultNew = allProducts.Where(n => string.Equals(n.Category, slug, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            //var filteredResultNew =  
+
             displayViews.Products = filteredResultNew;
             // model display view Products product
-            displayViews.Productview = oneCat;
+            displayViews.singlecategory = oneCat;
+
+
 
             return View("DisplayCategory", displayViews);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
 using System.Linq;
@@ -44,7 +45,9 @@ namespace UnitOfWork.Data.Cart
                     ShoppingCartId = ShoppingCartId,
                     products = product,
                     Amount = 1,
-                    Qty  = 1
+                    Qty  = 1,
+                 
+
                 };
 
                 context.shoppingCartItems.Add(shoppingCartItem);
@@ -55,6 +58,40 @@ namespace UnitOfWork.Data.Cart
             }
             context.SaveChanges();
         }
+
+
+
+        public void AddItemToCartA(Products product, int qty, string option1, string option2, string option3, string option4, string option5, string option6)
+        {
+            var shoppingCartItem = context.shoppingCartItems.FirstOrDefault(n => n.products.Id == product.Id && n.ShoppingCartId == ShoppingCartId);
+
+            if (shoppingCartItem == null)
+            {
+                shoppingCartItem = new ShoppingCartItem()
+                {
+                    ShoppingCartId = ShoppingCartId,
+                    products = product,
+                    Amount = 1,
+                    Qty = qty,
+                    options1 = option1,
+                    options2 = option2,
+                    options3 = option3,
+                    options4 = option4,
+                    options5 = option5,
+                    options6 = option6,
+
+
+                };
+
+                context.shoppingCartItems.Add(shoppingCartItem);
+            }
+            else
+            {
+                shoppingCartItem.Amount++;
+            }
+            context.SaveChanges();
+        }
+
 
 
         public void RemoveItemFromCart(Products product)

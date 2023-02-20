@@ -1,39 +1,41 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using UnitOfWork.Data.Base;
 
 namespace UnitOfWork.Models
 {
-    public class OrdersCart
+    public class OrdersCart : IEntityBase
     {
 
         [Key]
-        public int OrderId { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
+        public int Id { get; set; }
+  
+        public string? FirstName { get; set; }
+   
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         public string? Company { get; set; }
-        [Required]
+  
 
-        public string Street { get; set;}
-        [Required]
+        public string? Street { get; set;}
+   
 
-        public string City { get; set; }
-        [Required]
+        public string? City { get; set; }
+     
 
-        public string State { get; set; }
-        [Required]
+        public string? State { get; set; }
+        
 
-        public string ZipCode { get; set; }
-        [Required]
+        public string? ZipCode { get; set; }
+       
+        
+        public string? Phone { get; set; }
 
-        public string Country { get; set; }
-        [Required]
+        public string? ccc_name { get; set; }
+        public string? ccc_number { get; set; }
+        public string? expiration { get; set;}
+        public string? cvv { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:###-###-####}")]
-
-        public string Phone { get; set; }
 
 
     }

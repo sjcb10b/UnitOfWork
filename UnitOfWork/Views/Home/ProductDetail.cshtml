@@ -2,8 +2,10 @@
 
 
 
-
-
+<form asp-controller="Orders" asp-action="AddItemToShoppingCartA">
+     <input type="text" name="Id" value="@Model.Id" />
+    <input type="text" name="Title" value="@Model.Title" />
+    <a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">BUY NOW !</a>
 
 <section class="display_plates">
     <div class="container p-5 text-center">
@@ -87,8 +89,9 @@
                         <span asp-validation-for="@Model.Option6" class="text-danger"></span>
                     </div>
 
-
-
+                      <div class="form-group">
+                        QTY : <input type="text" name="Qty"/>
+                      </div>
             
                    }else{
                        <br />
@@ -96,12 +99,14 @@
                        <br />
                 }
 
+                    <input type="submit" value="NewOrder" class="btn btn-outline-success float-right" />
+
+</form>
 
 
 
 
-
-                <a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">BUY NOW !</a>
+               
             </div>
 
              

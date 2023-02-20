@@ -6,6 +6,8 @@ namespace UnitOfWork.Data.Base
     {
 
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetLastAsync();
+
 
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties);
 

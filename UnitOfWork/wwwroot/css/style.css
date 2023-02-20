@@ -66,6 +66,8 @@ h5,
 h6,
 p {
     margin: 0;
+    color: #000000;
+    font-weight: 600;
 }
 
 h3,
