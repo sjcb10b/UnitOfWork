@@ -1,19 +1,27 @@
 ﻿@model UnitOfWork.Models.Products
 
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
+        <h2>@Model.Title</h2>
+         
+
+    </div>
+</div><!-- End Breadcrumbs -->
 
 <form asp-controller="Orders" asp-action="AddItemToShoppingCartA">
-     <input type="text" name="Id" value="@Model.Id" />
-    <input type="text" name="Title" value="@Model.Title" />
-    <a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">BUY NOW !</a>
+     <input type="hidden" name="Id" value="@Model.Id" />
+    <input type="hidden" name="Title" value="@Model.Title" />
+    
 
-<section class="display_plates">
-    <div class="container p-5 text-center">
+<section class="display_platesa">
+    <div class="container  text-center">
 
         <div class="row">
 
 
-               <div class="col-12 text-center p-5">
+               <div class="col-12 text-center">
                           
                     <span class="colorh1"> @Model.Category</span>
             
@@ -24,7 +32,8 @@
 
             <div class="col">
                 <div class="product-img">
-                    <img class="card-img-top rounded-xl" src="~/images/images.jpg" alt="..." />
+                   
+                        <img class="card-img-top rounded-xl" src="~/images/mainPizza.jpg" alt="@Model.Title" />
 
                 </div>
 
@@ -36,7 +45,7 @@
                 @Model.Description
 
 
-                <span>Quantity</span>
+               
 
                 @if (Model.YesNo == 1){
 

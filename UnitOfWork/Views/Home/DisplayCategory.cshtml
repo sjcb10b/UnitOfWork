@@ -21,9 +21,9 @@
       </div><!-- End Breadcrumbs -->
 
  <section class="display_plates">
-    <div class="container p-5 text-center">
+    <div class="container  text-center">
         <div class="row">
-                <div class="col-12 text-center p-5">
+                <div class="col-12 text-center">
                           
                     <span class="colorh1"> </span>
             
@@ -34,28 +34,29 @@
             {
 
 
-                  <div class="col-lg-3 col-sm-6 mb5 ">
-                    <H3>@item.Title</H3>
+                  <div class="col-lg-3 col-sm-6 mb5 p-4">
+                    <H3 class="text-primary">@item.Title</H3>
                     <div class="card product-card">
 
                         <div class="product-img">
                             
                          <div class="figure">
                         <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
-                        <img class="card-img-top" src="~/images/images.jpg" alt="..." />
+                                    <img class="card-img-top" src="~/images/mainPizza.jpg" alt="@item.Title" />
                        
                         </a>
                          </div>
 
                                 <div class="card-body">
-                                    <div class="float-start"><h6> @item.Title  </h6>  </div>
-                                    <div class="float-end">Price:  @item.Price.ToString("c")  </div><br>
+                                    <div class="float-start"><span class="special">SPECIAL PRICE :</span>  </div>
+                                <div class="float-end"><h5 class="text-primary"> @item.Price.ToString("c") </h5> </div><br>
+                                
 
                                 </div>
-
+                            <span class="includes">** Includes shipping **</span>
                         </div>
                              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-success mt-auto" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">BUY NOW !</a></div>
+                        <div class="text-center"></div>
                   </div>
                     </div>
                   </div>

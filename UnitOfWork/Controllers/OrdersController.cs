@@ -61,8 +61,8 @@ namespace UnitOfWork.Controllers
         {
             //var items = await _ordersCartService.GetAllAsync();
 
-            var items = await _ordersCartService.GetLastAsync();
-            return View(items);
+            //var items = await _ordersCartService.GetLastAsync();
+            return View();
 
         }
 

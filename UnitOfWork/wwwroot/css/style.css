@@ -217,6 +217,11 @@ h1 {
         opacity: 5;
 }
 
+.card {
+    background-clip: border-box !important;
+    border: 1.2px solid #ffc107 !important;
+}
+
 
 
 
