@@ -1,6 +1,116 @@
 ﻿$(document).ready(function () {
    
     console.log("working 100 %");
+    $('#validateOrder').click(function () {
+
+        console.log("second validation 100 %");
+
+        var error_Option1 = '';
+        var error_Option2 = '';
+        var error_Option3 = '';
+        var error_Option4 = '';
+        var error_Option5 = '';
+        var error_Option6 = '';
+
+
+        if ($.trim($('#Option1').val()).length == 0) {
+            error_Option1 = 'Option 1 Missing !';
+            $('#error_Option1').text(error_Option1);
+            $('#Option1').addClass('has-error');
+        }
+        else {
+            Option1 = '';
+            $('#error_Option1').text(error_Option1);
+            $('#Option1').removeClass('has-error');
+        }
+
+        //if ($.trim($('#error_Option2').val()).length == 0) {
+        //    error_Option2 = 'Option 2 Missing !';
+        //    $('#error_Option2').text(error_Option2);
+        //    $('#Option2').addClass('has-error');
+        //}
+        //else {
+        //    error_Option2 = '';
+        //    $('#error_Option2').text(error_Option2);
+        //    $('#Option2').removeClass('has-error');
+
+        //}
+
+
+        //if ($.trim($('#error_Option3').val()).length == 0) {
+        //    error_Option3 = 'Option 3 Missing !';
+        //    $('#error_Option3').text(error_Option3);
+        //    $('#Option4').addClass('has-error');
+        //}
+        //else
+        //{
+        //    error_Option3 = '';
+        //    $('#error_Option3').text(error_Option3);
+        //    $('#Option3').removeClass('has-error');
+        //}
+
+        //if ($.trim($('#error_Option4').val()).length == 0) {
+        //    error_Option4 = 'Option 4 Missing !';
+        //    $('#error_Option4').text(error_Option4);
+        //    $('#Option4').addClass('has-error');
+        //}
+        //else {
+        //    error_Option4 = '';
+        //    $('#error_Option4').text(error_Option4);
+        //    $('#Option4').removeClass('has-error');
+        //}
+
+
+        //if ($.trim($('#error_Option5').val()).length == 0) {
+        //    error_Option5 = 'Option 5 Missing !';
+        //    $('#error_Option5').text(error_Option5);
+        //    $('#Option5').addClass('has-error');
+        //}
+        //else {
+        //    error_Option5 = '';
+        //    $('#error_Option5').text(error_Option5);
+        //    $('#Option5').removeClass('has-error');
+        //}
+
+        //if ($.trim($('#error_Option6').val()).length == 0) {
+        //    error_Option6 = 'Option 6 Missing !';
+        //    $('#error_Option6').text(error_Option6);
+        //    $('#Option6').addClass('has-error');
+        //}
+        //else
+        //{
+        //    error_Option6 = '';
+        //    $('#error_Option6').text(error_Option6);
+        //    $('#Option6').removeClass('has-error');
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+        if (Option1 != ''  ) {
+        //if (error_Option1 != '' || error_Option2 != '' || error_Option3 != '' || error_Option4 != '' || error_Option5 != '' || error_Option6 != '' ) {
+            return false;
+        } else {
+            //return true;
+            //alert("submit");
+            console.log("Final Submit ")
+            $('#myform2').submit();
+
+        }
+
+    });
+
+
+
+
 
     $('#finalpayment').click(function () {
 
@@ -36,6 +146,9 @@
             $('#error_fname').text(error_fname);
             $('#FirstName').removeClass('has-error');
         }
+
+
+
         if ($.trim($('#LastName').val()).length == 0) {
             error_lname = 'Last Name is required';
             $('#error_lname').text(error_lname);

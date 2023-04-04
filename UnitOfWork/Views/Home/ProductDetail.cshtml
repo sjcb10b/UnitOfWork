@@ -10,7 +10,7 @@
     </div>
 </div><!-- End Breadcrumbs -->
 
-<form asp-controller="Orders" asp-action="AddItemToShoppingCartA">
+<form asp-controller="Orders" asp-action="AddItemToShoppingCartA" id="myform2">
      <input type="hidden" name="Id" value="@Model.Id" />
     <input type="hidden" name="Title" value="@Model.Title" />
     
@@ -23,7 +23,7 @@
 
                <div class="col-12 text-center">
                           
-                    <span class="colorh1"> @Model.Category</span>
+                    <h3 class="text-primary"><u>@Model.Title </u> </h3>
             
                     <P class="p2">If you are looking for a restaurant to host your next event or party, then check out our fantastic banquet rooms at Buca.
                          Our fun and festive semi-private dining rooms are uniquely decorated, comfortable, and inviting, making Broccli's in Dallas, TX the perfect place for hosting a large banquet or an intimate gathering.</P>
@@ -43,6 +43,7 @@
                 <span class="colorh1"> @Model.Title</span>
                 <div style="display:block"></div>
                 @Model.Description
+                    <div style="display:block"><br /></div>
 
 
                
@@ -51,55 +52,71 @@
 
 
                     
-                    <div class="form-group">
-                        <label asp-for="@Model.Option1" class="control-label"></label>
-                        <select asp-for="@Model.Option1" class="form-control" asp-items="ViewBag.option11">
+                        <div class="form-group fw-bolder">
+                        <label asp-for="@Model.Option1" class="control-label mb-2"></label>
+                        <select asp-for="@Model.Option1" class="form-control" asp-items="ViewBag.option11" id="option1">
                             <option value=""> --- Select Option ---</option>
                         </select>
-                        <span asp-validation-for="@Model.Option1" class="text-danger"></span>
+                         @* <span asp-validation-for="@Model.Option1" class="text-danger"></span>*@
+                            <span id="error_Option1" class="text-danger"></span>
                     </div>
 
-                   <div class="form-group">
-                        <label asp-for="@Model.Option2" class="control-label"></label>
-                        <select asp-for="@Model.Option2" class="form-control" asp-items="ViewBag.option22">
+                        <div class="form-group fw-bolder">
+                            <label asp-for="@Model.Option2" class="control-label  mb-2"></label>
+                            <select asp-for="@Model.Option2" class="form-control" asp-items="ViewBag.option22" id="option2">
                             <option value=""> --- Select Option ---</option>
                         </select>
-                        <span asp-validation-for="@Model.Option2" class="text-danger"></span>
+                       @* <span asp-validation-for="@Model.Option2" class="text-danger"></span>*@
+                            <span id="error_Option2" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">
-                        <label asp-for="@Model.Option3" class="control-label"></label>
-                        <select asp-for="@Model.Option3" class="form-control" asp-items="ViewBag.option33">
+                        <div class="form-group fw-bolder">
+                            <label asp-for="@Model.Option3" class="control-label  mb-2"></label>
+                            <select asp-for="@Model.Option3" class="form-control" asp-items="ViewBag.option33" id="option3">
                             <option value=""> --- Select Option ---</option>
                         </select>
-                        <span asp-validation-for="@Model.Option3" class="text-danger"></span>
+                        @*<span asp-validation-for="@Model.Option3" class="text-danger"></span>*@
+                            <span id="error_Option3" class="text-danger"></span>
                     </div>
 
-                      <div class="form-group">
-                        <label asp-for="@Model.Option4" class="control-label"></label>
-                        <select asp-for="@Model.Option4" class="form-control" asp-items="ViewBag.option44">
+                        <div class="form-group fw-bolder">
+                            <label asp-for="@Model.Option4" class="control-label  mb-2"></label>
+                            <select asp-for="@Model.Option4" class="form-control" asp-items="ViewBag.option44" id="option4">
                             <option value=""> --- Select Option ---</option>
                         </select>
-                        <span asp-validation-for="@Model.Option4" class="text-danger"></span>
+                            <span id="error_Option4" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">
-                        <label asp-for="@Model.Option5" class="control-label"></label>
-                        <select asp-for="@Model.Option5" class="form-control" asp-items="ViewBag.option55">
+                        <div class="form-group fw-bolder">
+                            <label asp-for="@Model.Option5" class="control-label mb-2"></label>
+                            <select asp-for="@Model.Option5" class="form-control" asp-items="ViewBag.option55" id="option5">
                             <option value=""> --- Select Option ---</option>
                         </select>
-                        <span asp-validation-for="@Model.Option5" class="text-danger"></span>
+                            <span id="error_Option5" class="text-danger"></span>
                     </div>
-                      <div class="form-group">
-                        <label asp-for="@Model.Option6" class="control-label"></label>
-                        <select asp-for="@Model.Option6" class="form-control" asp-items="ViewBag.option66">
+                        <div class="form-group mb-4 fw-bolder">
+                            <label asp-for="@Model.Option6" class="control-label  mb-2"></label>
+                            <select asp-for="@Model.Option6" class="form-control" asp-items="ViewBag.option66" id="option6">
                             <option value=""> --- Select Option ---</option>
                         </select>
-                        <span asp-validation-for="@Model.Option6" class="text-danger"></span>
+                            <span id="error_Option6" class="text-danger"></span>
                     </div>
 
-                      <div class="form-group">
-                        QTY : <input type="text" name="Qty"/>
+                      <div class="form-group mt-4">
+                        QTY : 
+                            <select name="qty" class="fw-bolder">
+                              
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+
+                        </select>
                       </div>
             
                    }else{
@@ -107,8 +124,9 @@
                        <span>UPS!</span>
                        <br />
                 }
-
-                    <input type="submit" value="NewOrder" class="btn btn-outline-success float-right" />
+                    <div class="form-group mt-4">
+                    <input type="submit" value="NewOrder" id="validateOrder" class="btn btn-success float-right" />
+                    </div>
 
 </form>
 
@@ -122,4 +140,6 @@
         </div>
    </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/js/validate.js" asp-append-version="true"></script>
 

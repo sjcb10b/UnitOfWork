@@ -71,7 +71,7 @@ namespace UnitOfWork.Data.Cart
                 {
                     ShoppingCartId = ShoppingCartId,
                     products = product,
-                    Amount = 1,
+                    Amount = qty,
                     Qty = qty,
                     options1 = option1,
                     options2 = option2,

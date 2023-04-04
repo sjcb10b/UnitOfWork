@@ -46,12 +46,14 @@ namespace UnitOfWork.Controllers
             return View(response);
         }
 
-        public async Task<IActionResult> AddItemToShoppingCart(int Id)
+        public async Task<IActionResult> AddItemToShoppingCart(int Id )
         {
             var item = await _productServices.GetProductsAsync(Id);
 
             if (item != null)
             {
+                
+
                 _shoppingCart.AddItemToCart(item);
             }
             return RedirectToAction(nameof(ShoppingCart));

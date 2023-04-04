@@ -17,5 +17,7 @@ namespace UnitOfWork.Models
         public string? ImageCategoryA { get; set; }
         //public string slug => Name.Replace(' ', '-').ToLower();
         public string? slug { get; set; }
+        public string? Description { get; set; }
+
     }
 }

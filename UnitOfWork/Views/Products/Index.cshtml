@@ -32,18 +32,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.ImageA)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageB)
-            </th>
+           
 
             <th>
                 @Html.DisplayNameFor(model => model.YesNo)
             </th>
-
-            <th>
-
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
+ 
             <th></th>
         </tr>
     </thead>
@@ -68,9 +62,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ImageA)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageB)
-            </td>
+           
                 <td>
                     @if (item.YesNo == 1)
                     {
@@ -83,9 +75,7 @@
 
                     @*@Html.DisplayFor(modelItem => item.YesNo)*@
                 </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
+             
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

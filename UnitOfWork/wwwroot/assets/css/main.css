@@ -56,12 +56,23 @@ h6 {
   font-family: var(--font-primary);
 }
 
+.colorh1 {
+    font-family: var(--font-primary);
+    font-size:24px;
+    color: var(--color-default);
+}
+
 /*--------------------------------------------------------------
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
   padding: 80px 0;
   overflow: hidden;
+}
+
+section1 {
+    padding: 20px 0;
+    overflow: hidden;
 }
 
 .section-bg {
