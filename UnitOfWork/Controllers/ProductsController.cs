@@ -72,6 +72,37 @@ namespace UnitOfWork.Controllers
             return View(products);
         }
 
+
+        // Add O Edit 
+        public async Task<IActionResult> AddOEdit(int Id = 0)
+        {
+            if (Id == 0)
+            {
+                ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name");
+                ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno");
+                return View(new Products());
+            }
+            else
+            {
+
+                var products = await _context.products.FindAsync(Id);
+                if (products == null)
+                {
+                    return NotFound();
+                }
+                ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name", products.Category);
+                ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno", products.YesNo);
+
+                return View(products);
+
+            }
+        }
+
+
+
+
+
+
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -90,6 +121,13 @@ namespace UnitOfWork.Controllers
 
             return View(products);
         }
+
+
+
+
+
+
+
 
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

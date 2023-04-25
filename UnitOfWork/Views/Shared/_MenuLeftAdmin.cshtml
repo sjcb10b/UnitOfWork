@@ -22,16 +22,18 @@
                 </li>
 
                 <li>
+                    <a asp-controller="Products" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Products</span>
+                    </a>
+                </li>
+
+                <li>
                     <a asp-controller="ProductOptions" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Products Options</span>
                     </a>
                 </li>
 
-                <li>
-                    <a  asp-controller="Products" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Products</span>
-                    </a>
-                </li>
+              
 
 
                 <li>
@@ -50,83 +52,8 @@
                 
             </ul>
         </li><!-- End Components Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-services" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-services" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="Emailusers" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Email Users</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="Adobusers" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Adobe Users</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="Magentopartners" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Magento(partners)</span>
-                    </a>
-                </li>
-
-
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="Webprograms" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Web Programs</span>
-                    </a>
-                </li>
-
-
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="Nuorder" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>NuOrder</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="sendgrid" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Send Grid - email</span>
-                    </a>
-                </li>
-
-            </ul>
-        </li><!-- PCI -->
-
-
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-amazon" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-bar-chart"></i><span>Amazon Services</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-amazon" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="Amazonservices" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Web Servers</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- PCI -->
-
-
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-elogin" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-alarm"></i><span>EDI </span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-elogin" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-                <li>
-                    <a asp-area="Homeadmin" asp-controller="ediLogin" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>EDI Login</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- PCI -->
+ 
+         
         <li class="nav-heading">Admin Info</li>
 
         <li class="nav-item">

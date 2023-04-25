@@ -15,7 +15,7 @@ namespace UnitOfWork.Models
         public int Qty { get; set; }
         public string? ImageA { get; set; }
         public string? ImageB { get; set; }
-        [DisplayName("Yes/No ")]
+        [DisplayName("Yes/No Display Options(Products)")]
         public int? YesNo { get; set; } = 1;
 
         public DateTime? CreatedDate { get; set; } = DateTime.Now;

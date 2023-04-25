@@ -5,106 +5,99 @@
 
         console.log("second validation 100 %");
 
-        var error_Option1 = '';
-        var error_Option2 = '';
-        var error_Option3 = '';
-        var error_Option4 = '';
-        var error_Option5 = '';
-        var error_Option6 = '';
 
+        $('#option1').on('change', function () {
+            if ($(':submit').is(':disabled')) {
+                $(':submit').prop('disabled', false);
+            }
+            $(".valid").remove();
+        });
 
-        if ($.trim($('#Option1').val()).length == 0) {
-            error_Option1 = 'Option 1 Missing !';
-            $('#error_Option1').text(error_Option1);
-            $('#Option1').addClass('has-error');
+        if ($("#option1 option:selected").val() == '') {
+            event.preventDefault();
+            $("#option1").focus();
+            $("#error_Option1").append('<p class="valid"><em>Please Select something</em></p>');
+            $(":submit").prop("disabled", true);
         }
-        else {
-            Option1 = '';
-            $('#error_Option1').text(error_Option1);
-            $('#Option1').removeClass('has-error');
+        // here is the option 2
+
+
+        $('#option2').on('change', function () {
+            if ($(':submit').is(':disabled')) {
+                $(':submit').prop('disabled', false);
+            }
+            $(".valid").remove();
+        });
+
+        if ($("#option2 option:selected").val() == '') {
+            event.preventDefault();
+            $("#option2").focus();
+            $("#error_Option2").append('<p class="valid"><em>Please Select something</em></p>');
+            $(":submit").prop("disabled", true);
         }
 
-        //if ($.trim($('#error_Option2').val()).length == 0) {
-        //    error_Option2 = 'Option 2 Missing !';
-        //    $('#error_Option2').text(error_Option2);
-        //    $('#Option2').addClass('has-error');
-        //}
-        //else {
-        //    error_Option2 = '';
-        //    $('#error_Option2').text(error_Option2);
-        //    $('#Option2').removeClass('has-error');
+        // here is the option 3 
 
-        //}
+        $('#option3').on('change', function () {
+            if ($(':submit').is(':disabled')) {
+                $(':submit').prop('disabled', false);
+            }
+            $(".valid").remove();
+        });
 
-
-        //if ($.trim($('#error_Option3').val()).length == 0) {
-        //    error_Option3 = 'Option 3 Missing !';
-        //    $('#error_Option3').text(error_Option3);
-        //    $('#Option4').addClass('has-error');
-        //}
-        //else
-        //{
-        //    error_Option3 = '';
-        //    $('#error_Option3').text(error_Option3);
-        //    $('#Option3').removeClass('has-error');
-        //}
-
-        //if ($.trim($('#error_Option4').val()).length == 0) {
-        //    error_Option4 = 'Option 4 Missing !';
-        //    $('#error_Option4').text(error_Option4);
-        //    $('#Option4').addClass('has-error');
-        //}
-        //else {
-        //    error_Option4 = '';
-        //    $('#error_Option4').text(error_Option4);
-        //    $('#Option4').removeClass('has-error');
-        //}
-
-
-        //if ($.trim($('#error_Option5').val()).length == 0) {
-        //    error_Option5 = 'Option 5 Missing !';
-        //    $('#error_Option5').text(error_Option5);
-        //    $('#Option5').addClass('has-error');
-        //}
-        //else {
-        //    error_Option5 = '';
-        //    $('#error_Option5').text(error_Option5);
-        //    $('#Option5').removeClass('has-error');
-        //}
-
-        //if ($.trim($('#error_Option6').val()).length == 0) {
-        //    error_Option6 = 'Option 6 Missing !';
-        //    $('#error_Option6').text(error_Option6);
-        //    $('#Option6').addClass('has-error');
-        //}
-        //else
-        //{
-        //    error_Option6 = '';
-        //    $('#error_Option6').text(error_Option6);
-        //    $('#Option6').removeClass('has-error');
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-        if (Option1 != ''  ) {
-        //if (error_Option1 != '' || error_Option2 != '' || error_Option3 != '' || error_Option4 != '' || error_Option5 != '' || error_Option6 != '' ) {
-            return false;
-        } else {
-            //return true;
-            //alert("submit");
-            console.log("Final Submit ")
-            $('#myform2').submit();
-
+        if ($("#option3 option:selected").val() == '') {
+            event.preventDefault();
+            $("#option3").focus();
+            $("#error_Option3").append('<p class="valid"><em>Please Select something</em></p>');
+            $(":submit").prop("disabled", true);
         }
+
+        // here is the option 4
+        $('#option4').on('change', function () {
+            if ($(':submit').is(':disabled')) {
+                $(':submit').prop('disabled', false);
+            }
+            $(".valid").remove();
+        });
+
+        if ($("#option4 option:selected").val() == '') {
+            event.preventDefault();
+            $("#option4").focus();
+            $("#error_Option4").append('<p class="valid"><em>Please Select something</em></p>');
+            $(":submit").prop("disabled", true);
+        }
+
+        // here is the option 5
+
+        $('#option5').on('change', function () {
+            if ($(':submit').is(':disabled')) {
+                $(':submit').prop('disabled', false);
+            }
+            $(".valid").remove();
+        });
+
+        if ($("#option5 option:selected").val() == '') {
+            event.preventDefault();
+            $("#option5").focus();
+            $("#error_Option5").append('<p class="valid"><em>Please Select something</em></p>');
+            $(":submit").prop("disabled", true);
+        }
+        // here is the option 6
+
+        $('#option6').on('change', function () {
+            if ($(':submit').is(':disabled')) {
+                $(':submit').prop('disabled', false);
+            }
+            $(".valid").remove();
+        });
+
+        if ($("#option6 option:selected").val() == '') {
+            event.preventDefault();
+            $("#option6").focus();
+            $("#error_Option6").append('<p class="valid"><em>Please Select something</em></p>');
+            $(":submit").prop("disabled", true);
+        }
+
 
     });
 
@@ -161,25 +154,7 @@
             $('#LastName').removeClass('has-error');
         }
 
-        //if ($.trim($('#email').val()).length == 0) {
-        //    error_email = 'Email is required';
-        //    $('#error_email').text(error_email);
-        //    $('#email').addClass('has-error');
-        //}
-        //else
-        //{
-        //    if (!filter.test($('#email').val())) {
-        //        error_email = 'Invalid Email';
-        //        $('#error_email').text(error_email);
-        //        $('#email').addClass('has-error');
-        //    }
-        //    else {
-        //        error_email = '';
-        //        $('#error_email').text(error_email);
-        //        $('#email').removeClass('has-error');
-        //    }
-        //}
-        //// Phone verification 
+        
         if ($.trim($('#Phone').val()).length == 0) {
             error_phone = 'Phone is required';
             $('#error_phone').text(error_phone);

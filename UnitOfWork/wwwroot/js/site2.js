@@ -1,21 +1,4 @@
-﻿//$(document).ready(function () {
-//    $('#myTable').DataTable({
-
-//        "scrollCollapse": true,
-//        "paging": true
-//    });
-//});
-
-$(document).ready(function () {
-    $('#myTable').DataTable({
-
-        "scrollCollapse": true,
-        "paging": true
-    });
-});
-// Write your JavaScript code.
-
-$(function () {
+﻿$(function () {
     $("#loaderbody").addClass('hide');
 
     $(document).bind('ajaxStart', function () {
@@ -25,8 +8,10 @@ $(function () {
     });
 });
 
+
+
 showInPopup = (url, title) => {
-    console.log("I am in");
+    console.log("I am in JC");
     $.ajax({
         type: 'GET',
         url: url,

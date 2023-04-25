@@ -1,10 +1,23 @@
 ﻿@model IEnumerable<UnitOfWork.Models.Category>
-
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
 @{
     ViewData["Title"] = "Index";
  
 
 }
+
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+</style>
 
 
 <div class="col-md-12">
