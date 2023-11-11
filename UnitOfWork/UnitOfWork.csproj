@@ -449,7 +449,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
   </ItemGroup>
 
@@ -458,6 +458,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Myadmin\Data\" />
+    <Folder Include="Areas\Myadmin\Models\" />
+    <Folder Include="wwwroot\mercha\" />
     <Folder Include="wwwroot\productImages\" />
   </ItemGroup>
 

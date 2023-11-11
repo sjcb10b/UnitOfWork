@@ -25,8 +25,8 @@ builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 builder.Services.AddScoped<IProductServices, ProductServices>();
 builder.Services.AddScoped<IProductOptionsService, ProductOtionsService>();
 builder.Services.AddScoped<IOrdersCartService, OrdersCartService>();
-
-
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+builder.Services.AddScoped<IOrderedItemsService, OrderedItemsService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
@@ -54,8 +54,23 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+});
+
+
 
 app.Run();

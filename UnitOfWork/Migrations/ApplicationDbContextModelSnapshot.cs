@@ -272,6 +272,174 @@ namespace UnitOfWork.Migrations
                     b.ToTable("displayYesNo");
                 });
 
+            modelBuilder.Entity("UnitOfWork.Models.Items", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageA")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageB")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("items");
+                });
+
+            modelBuilder.Entity("UnitOfWork.Models.Merchandise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageA")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("merchandise");
+                });
+
+            modelBuilder.Entity("UnitOfWork.Models.OrderedItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount_o")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Qty_o")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId_o")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options1_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options2_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options3_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options4_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options5_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("options6_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("products_oId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("products_oId");
+
+                    b.ToTable("orderedItems");
+                });
+
+            modelBuilder.Entity("UnitOfWork.Models.Orders", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Company_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShoppingCartIdCustomer_o")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ccc_name_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ccc_number_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("cvv_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("expiration_o")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("orders");
+                });
+
             modelBuilder.Entity("UnitOfWork.Models.OrdersCart", b =>
                 {
                     b.Property<int>("Id")
@@ -293,6 +461,10 @@ namespace UnitOfWork.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShoppingCartIdCustomer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -507,6 +679,17 @@ namespace UnitOfWork.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UnitOfWork.Models.OrderedItems", b =>
+                {
+                    b.HasOne("UnitOfWork.Models.Products", "products_o")
+                        .WithMany()
+                        .HasForeignKey("products_oId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("products_o");
                 });
 
             modelBuilder.Entity("UnitOfWork.Models.ShoppingCartItem", b =>

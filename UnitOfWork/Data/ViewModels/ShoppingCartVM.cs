@@ -11,5 +11,7 @@ namespace UnitOfWork.Data.ViewModels
         public int GetTotalCartItems { get; set; }
 
 
+
+
     }
 }

@@ -33,6 +33,9 @@ namespace UnitOfWork.Data.Cart
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
+      
+
+
 
         public void AddItemToCart(Products product)
         {
@@ -129,10 +132,15 @@ namespace UnitOfWork.Data.Cart
 
         }
 
+      
+
 
 
 
         public double GetShoppingCartTotal() => (double)context.shoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId).Select(n => n.products.Price * n.Amount).Sum();
+
+
+
 
         public async Task ClearShoppingCartAsync()
         {
@@ -141,7 +149,12 @@ namespace UnitOfWork.Data.Cart
             await context.SaveChangesAsync();
         }
 
-         
+        public async Task ClearOrdersAsync()
+        {
+            var Id = await context.ordersCarts.Where(n => n.ShoppingCartIdCustomer == ShoppingCartId).ToListAsync();
+            context.ordersCarts.RemoveRange(Id);
+            await context.SaveChangesAsync();
+        }
 
 
     }

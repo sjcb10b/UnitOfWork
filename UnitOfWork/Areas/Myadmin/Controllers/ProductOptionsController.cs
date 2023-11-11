@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using UnitOfWork.Data;
 using UnitOfWork.Models;
 
-namespace UnitOfWork.Controllers
+namespace UnitOfWork.Areas.Myadmin.Controllers
 {
     public class ProductOptionsController : Controller
     {
@@ -22,9 +22,9 @@ namespace UnitOfWork.Controllers
         // GET: ProductOptions
         public async Task<IActionResult> Index()
         {
-              return _context.ProductOptions != null ? 
-                          View(await _context.ProductOptions.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ProductOptions'  is null.");
+            return _context.ProductOptions != null ?
+                        View(await _context.ProductOptions.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.ProductOptions'  is null.");
         }
 
 
@@ -71,7 +71,7 @@ namespace UnitOfWork.Controllers
             return View(productOptions);
         }
 
-        public async Task<IActionResult> AddOEdit(int Id =0)
+        public async Task<IActionResult> AddOEdit(int Id = 0)
         {
             if (Id == 0)
             {
@@ -79,17 +79,17 @@ namespace UnitOfWork.Controllers
             }
             else
             {
-             var productOptions = await _context.ProductOptions.FindAsync(Id);
+                var productOptions = await _context.ProductOptions.FindAsync(Id);
 
-            if (productOptions == null)
-            {
-                return NotFound();
-            }
-            return View(productOptions);
+                if (productOptions == null)
+                {
+                    return NotFound();
+                }
+                return View(productOptions);
             }
 
-            
-            
+
+
         }
 
         // GET: ProductOptions/Edit/5
@@ -175,14 +175,14 @@ namespace UnitOfWork.Controllers
             {
                 _context.ProductOptions.Remove(productOptions);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductOptionsExists(int Id)
         {
-          return (_context.ProductOptions?.Any(e => e.Id == Id)).GetValueOrDefault();
+            return (_context.ProductOptions?.Any(e => e.Id == Id)).GetValueOrDefault();
         }
     }
 }

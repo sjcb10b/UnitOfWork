@@ -6,6 +6,7 @@ namespace UnitOfWork.Data.ViewComoponents
     public class ShoppingCartSummary: ViewComponent
     {
         private readonly ShoppingCart _shoppingCart;
+
         public ShoppingCartSummary(ShoppingCart shoppingCart)
         {
             _shoppingCart = shoppingCart;

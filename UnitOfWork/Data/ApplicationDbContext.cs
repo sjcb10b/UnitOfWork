@@ -16,8 +16,16 @@ namespace UnitOfWork.Data
         public DbSet<Category> categories { get; set; }
         public DbSet<OrdersCart> ordersCarts { get; set; }
         public DbSet<ProductOptions> ProductOptions { get; set; }
-
+        public DbSet<Orders> orders { get; set; }
+        public DbSet<OrderedItems> orderedItems { get; set; }
         public DbSet<DisplayYesNo> displayYesNo { get; set; }
+
+        public DbSet<Merchandise>  merchandise { get; set; }
+
+        public DbSet<Items> items { get; set; }
+
+        
+
 
 
 

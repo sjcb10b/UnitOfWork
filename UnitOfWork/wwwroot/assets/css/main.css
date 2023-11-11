@@ -326,7 +326,7 @@ section1 {
     font-family: var(--font-primary);
     font-size: 14px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
+    color: #fff; 
     text-transform: uppercase;
     white-space: nowrap;
     transition: 0.3s;

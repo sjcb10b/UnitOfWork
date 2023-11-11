@@ -16,45 +16,52 @@
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
                 <li>
-                    <a  asp-controller="Categories" asp-action="Index">
+                    <a  asp-area="Myadmin" asp-controller="Categories" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Categories</span>
                     </a>
                 </li>
 
                 <li>
-                    <a asp-controller="Products" asp-action="Index">
+                    <a asp-area="Myadmin" asp-controller="Products" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Products</span>
                     </a>
                 </li>
 
                 <li>
-                    <a asp-controller="ProductOptions" asp-action="Index">
+                    <a asp-area="Myadmin" asp-controller="ProductOptions" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Products Options</span>
                     </a>
                 </li>
 
-              
-
-
                 <li>
-                    <a  asp-controller="OrdersCarts" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Shopping Cart </span>
+                    <a  asp-controller="Merchandise" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Merchandise</span>
                     </a>
                 </li>
 
                 <li>
-                    <a asp-controller="OrdersCarts" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Orders Pending</span>
+                    <a asp-controller="Items" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Items</span>
                     </a>
                 </li>
 
 
-                
+                 
             </ul>
         </li><!-- End Components Nav -->
  
          
-        <li class="nav-heading">Admin Info</li>
+        <li class="nav-heading">Orders Info</li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" asp-controller="Orders" asp-action="Index">
+                <i class="bi bi-person"></i>
+                <span>Orders</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
+
+
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="users-profile.html">
@@ -70,3 +77,18 @@
         </li><!-- End Login Page Nav -->
     </ul>
 </aside><!-- End Sidebar-->
+
+
+
+
+<li>
+    <a asp-controller="OrdersCarts" asp-action="Index">
+        <i class="bi bi-circle"></i><span>Shopping Cart </span>
+    </a>
+</li>
+
+<li>
+    <a asp-controller="OrdersCarts" asp-action="Index">
+        <i class="bi bi-circle"></i><span>Orders Pending</span>
+    </a>
+</li>

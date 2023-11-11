@@ -10,11 +10,11 @@ using UnitOfWork.Models;
 
 namespace UnitOfWork.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController__ : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController__(ApplicationDbContext context)
         {
             _context = context;
         }

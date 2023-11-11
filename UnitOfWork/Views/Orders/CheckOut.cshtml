@@ -16,15 +16,17 @@
  
 
 <!--// banner corousel  -->
-
+<form method="post" action="/orders/FinalCheckOut" id="myform">
 <section class="banner_sectionab">
     <div class="container">
         <div class="row">
           
                <div class="col-12 text-center ">
                 <h2    class="text-primary">Final Payment</h2>
-                    <P class="p2">If you are looking for a restaurant to host your next event or party, then check out our fantastic banquet rooms at Buca.
-                         Our fun and festive semi-private dining rooms are uniquely decorated, comfortable, and inviting, making Broccli's in Dallas, TX the perfect place for hosting a large banquet or an intimate gathering.</P>
+                    <P class="p2">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+
+                    </P>
                 </div>
 
             <!-- strt form -->
@@ -32,7 +34,7 @@
             <div class="col-7">
                 <!-- div start -->
                 <div class="container">
-                        <form method="post" action="/orders/FinalCheckOut" id="myform">
+                     
                         <h2>Please fill out the form </h2>
                         <hr>
                         <div class="row">
@@ -151,7 +153,7 @@
 
 
                         
-                    </form>
+                 
                 </div>
             </div><!-- div end -->
             <!-- end form -->
@@ -178,6 +180,7 @@
                                        
                                         <td class="align-middle">
                                             @item.products.Title<br>
+                                                <input type="hidden" name="ShoppingCartIdCustomer" value="@item.ShoppingCartId" />
                                             Items:<br>
                                             @if(item.options1 != null)
                                             {
@@ -241,6 +244,7 @@
                             <div class="d-grid gap-2 col-6 mx-auto">
                              
                                 <input type="submit" name="submit" class="btn btn-primary" id="finalpayment" value="Final  Payment" />
+                                    
                             </div>
                         </div>
                     </div>
@@ -251,6 +255,6 @@
         </div>
     </div>
     </section>
-
+</form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="~/js/validate.js" asp-append-version="true"></script>
