@@ -24,6 +24,16 @@ namespace UnitOfWork.Data
 
         public DbSet<Items> items { get; set; }
 
+        public DbSet<Country> countries { get; set; }
+
+
+        public  DbSet<City> cities { get; set; }
+
+        public DbSet<Customer> customers { get; set; }
+
+
+
+
         
 
 
