@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.AccessControl;
 using UnitOfWork.Data;
@@ -9,13 +10,13 @@ namespace UnitOfWork.Controllers
     public class CountryController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
+
         public CountryController(ApplicationDbContext applicationDb)
         {
             _context = applicationDb;
         }
 
-        
+
 
         public IActionResult Index()
         {
@@ -46,6 +47,30 @@ namespace UnitOfWork.Controllers
             Country country = GetCountry(Id);
             return View(country);
         }
+
+
+
+
+
+
+
+        [HttpGet]
+        public IActionResult CreateModalForm()
+        {
+            Country country = new Country();
+            return PartialView("_CreateModelForm", country);
+        }
+
+        [HttpPost]
+        public IActionResult CreateModelForm(Country country)
+        {
+            _context.Add(country);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+
+
 
         [HttpGet]
         public IActionResult Edit(int Id)
@@ -99,5 +124,30 @@ namespace UnitOfWork.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+        public JsonResult GetCountries()
+        {
+            var lstCountries = new List<SelectListItem>();
+            List<Country> countries = _context.countries.ToList();
+            lstCountries = countries.Select(ct => new SelectListItem()
+            {
+                Value = ct.Id.ToString(),
+                Text = ct.Name
+
+            }).ToList();
+
+            var defItem = new SelectListItem()
+            {
+                Value = "",
+                Text = " ---- SELECT COUNTRY "
+            };
+            lstCountries.Insert(0, defItem);
+
+
+
+            return Json(lstCountries);
+        }
+
+
     }
 }

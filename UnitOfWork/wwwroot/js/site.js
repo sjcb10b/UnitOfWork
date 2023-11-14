@@ -139,3 +139,54 @@ $(".custom-file-input").on("change", function () {
     document.getElementById('PhotoUrl').value = fileName;
 
 });
+
+function ShowCreateModalForm() {
+    console.log("createdialogholder")
+    $("#DivCreateDialogHolder").modal('show');
+    return;
+}
+
+
+
+
+function submitModalForm() {
+    var btnSubmit = document.getElementById('btnSubmit');
+    btnSubmit.click();
+}
+
+function refreshCountryList() {
+    var btnBack = document.getElementById('dupBackBtn');
+    btnBack.click();
+    FillCountries("lstCountryId");
+}
+
+
+function FillCountries(lstCountryId) {
+    var lstCountries = $("#" + lstCountryId);
+    lstCountries.empty();
+
+    lstCountries.append($('<option/>',
+        {
+            value: null,
+            text: "Select Country"
+        }));
+
+    
+    $.getJSON('/country/getCountries', function(countries)
+      {
+        if (countries != null && !jQuery.isEmptyObject(countries)) {
+            $.each(countries, function (index, countrie) {
+                lstCountries.append($('<option/>',
+                    {
+                        value: countrie.value,
+                        text: countrie.text
+                    }));
+            });
+        };
+
+      });
+    
+  
+    
+    return;
+}
