@@ -1,0 +1,113 @@
+﻿@model IEnumerable<UnitOfWork.Models.Products>
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
+@{
+    ViewData["Title"] = "Index";
+   // Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+</style>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+              #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>Img</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+          
+           
+
+            <th>
+                @Html.DisplayNameFor(model => model.YesNo)
+            </th>
+ 
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOEdit","Products",null,Context.Request.Scheme)','New Product')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Product</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            // csharp code block
+            // everything in here is code, don't have to use @
+            var counter = 0;
+        }
+@foreach (var item in Model) {
+            counter++;
+            <tr>
+            <td>
+                    @counter
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+                <td>  <img src="/images/@item.ImageA" width="100px" height="100px" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+          
+           
+                <td>
+                    @if (item.YesNo == 1)
+                    {
+                        <div>Yes</div> 
+                    }
+                    else
+                    {
+                        <div>No</div>
+                    }
+
+                    @*@Html.DisplayFor(modelItem => item.YesNo)*@
+                </td>
+             
+            <td>
+                <div>
+                            <a onclick="showInPopup('@Url.Action("AddOEdit","Products",new {id=item.Id},Context.Request.Scheme)','Update Item')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                <input type="hidden" asp-for="@item.Id" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

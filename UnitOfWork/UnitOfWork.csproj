@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ProductsController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\assets\img\not-found.svg" />
     <None Include="wwwroot\assets\js\main_.js" />
     <None Include="wwwroot\assets\vendor\apexcharts\apexcharts.min.js" />

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
@@ -155,6 +156,15 @@ namespace UnitOfWork.Data.Cart
             context.ordersCarts.RemoveRange(Id);
             await context.SaveChangesAsync();
         }
+
+        public int LastOrder()
+        {
+             var lastitem =   context.orders.OrderByDescending(p => p.Id).First();
+             return lastitem.Id;
+
+        }
+
+        
 
 
     }

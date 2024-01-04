@@ -1,0 +1,101 @@
+﻿@model IEnumerable<UnitOfWork.Models.Category>
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
+@{
+    ViewData["Title"] = "Index";
+ 
+}
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .dataTables_wrapper div.dataTables_filter input {
+       
+        width: 300px !important;
+    }
+</style>
+
+
+<table class="table" id="myTable">
+    
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageCategoryA)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.slug)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+           
+           
+             
+            <th>
+
+                <a onclick="showInPopup('@Url.Action("AddOEdit","Categories",null,Context.Request.Scheme)','New Item')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Item</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            // csharp code block
+            // everything in here is code, don't have to use @
+            var counter = 0;
+        }
+@foreach (var item in Model) {
+            counter++;
+        <tr>
+                <td>
+                    @counter
+                </td>
+                <td>
+                   <img src="/images/@item.ImageCategoryA" width="100px" height="100px" />
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.slug)
+                </td>
+                
+                <td>
+                 @Html.DisplayFor(modelItem => item.DisplayOrder)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+          
+           
+            
+            <td>
+                <a onclick="showInPopup('@Url.Action("AddOEdit","Categories",new {id=item.Id},Context.Request.Scheme)','Update Item')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                <input type="hidden" asp-for="@item.Id" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                             
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

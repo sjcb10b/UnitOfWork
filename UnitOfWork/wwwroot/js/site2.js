@@ -17,12 +17,12 @@ showInPopup = (url, title) => {
         url: url,
         success: function (res) {
             $('#form-modal .modal-body').html(res);
-            $('#form-modal .modal-title').html(title);
+            $('#form-modal .modal-title').html(title);//p[]
             $('#form-modal').modal('show');
             // to make popup draggable
-            $('.modal-dialog').draggable({
-                handle: ".modal-header"
-            });
+            //$('.modal-dialog').draggable({
+            //    handle: ".modal-header"
+            //});
         }
     })
 }

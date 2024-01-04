@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow.CopyAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -73,7 +74,12 @@ namespace UnitOfWork.Controllers
         {
             //var items = await _ordersCartService.GetAllAsync();
 
-            //var items = await _ordersCartService.GetLastAsync();
+            var items =  _shoppingCart.LastOrder();
+             var nwDt =  DateTime.Now;
+
+
+            ViewData["CategoryName"] = items;
+            ViewData["nowDt"] = nwDt;
             return View();
 
         }
@@ -183,6 +189,8 @@ namespace UnitOfWork.Controllers
 
             // here is the pending store Orders
             // await  _ordersService.
+
+            
             return RedirectToAction(nameof(ThankYou));
         }
 

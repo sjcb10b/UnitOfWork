@@ -1,11 +1,21 @@
-﻿@model IEnumerable<UnitOfWork.Models.Category>
-@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
-@using X.PagedList;
+﻿@model IEnumerable<UnitOfWork.Models.Products>
+ 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
- 
+
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+</style>
 
 <div id="view-all">
     @await Html.PartialAsync("_ViewAll", Model)
@@ -16,18 +26,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
-                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!--
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>*@
+                </button>-->
             </div>
             <div class="modal-body">
             </div>
         </div>
     </div>
 </div>
-
-@section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

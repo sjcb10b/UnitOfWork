@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<UnitOfWork.Models.ProductOptions>
 
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -18,7 +20,7 @@
 </style>
 
 <div id="view-all">
-    @await Html.PartialAsync("_ViewAllItems", Model)
+    @await Html.PartialAsync("_ViewAll", Model)
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="form-modal">

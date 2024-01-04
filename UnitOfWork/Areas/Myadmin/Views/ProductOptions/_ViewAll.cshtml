@@ -1,0 +1,87 @@
+﻿@model IEnumerable<UnitOfWork.Models.ProductOptions>
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
+@{
+    ViewData["Title"] = "Index";
+   
+}
+
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+</style>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.option11)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.option22)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.option33)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.option44)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.option55)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.option66)
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            // csharp code block
+            // everything in here is code, don't have to use @
+            var counter = 0;
+        }
+@foreach (var item in Model) {
+            counter++;
+        <tr>
+                <td>
+                    @counter
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.option11)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.option22)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.option33)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.option44)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.option55)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.option66)
+            </td>
+            <td>
+                     <a onclick="showInPopup('@Url.Action("AddOEdit","ProductOptions",new {id=item.Id},Context.Request.Scheme)','Update Item')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                              
+             </td>
+        </tr>
+}
+    </tbody>
+</table>

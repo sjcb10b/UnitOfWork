@@ -1,0 +1,55 @@
+﻿@model UnitOfWork.Models.ProductOptions
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ProductOptions</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.option11)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.option11)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.option22)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.option22)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.option33)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.option33)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.option44)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.option44)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.option55)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.option55)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.option66)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.option66)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

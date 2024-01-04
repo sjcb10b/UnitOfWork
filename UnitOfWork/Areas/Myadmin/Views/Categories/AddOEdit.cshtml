@@ -1,0 +1,84 @@
+﻿@model UnitOfWork.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "";
+}
+<style>
+    .text-white {
+        color: #fff !important;
+        font-size: 11px !important;
+    }
+</style>
+<hr />
+<div class="row">
+
+  
+        <form asp-area="Myadmin" asp-action="AddOEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+        
+
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DisplayOrder" class="control-label"></label>
+                    <input asp-for="DisplayOrder" class="form-control" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
+            </div>
+           
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ImageCategoryA" class="control-label"></label>
+                    <input asp-for="ImageCategoryA" class="form-control" />
+                    <span asp-validation-for="ImageCategoryA" class="text-danger"></span>
+                </div>
+            </div>
+        </div>  
+        
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="slug" class="control-label"></label>
+                    <input asp-for="slug" class="form-control" />
+                    <span asp-validation-for="slug" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="CreatedDate" class="control-label"></label>
+                    <input asp-for="CreatedDate" class="form-control" />
+                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label><br />
+                     
+
+                    <textarea asp-for="Description" rows="10" cols="90"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+             </div>
+        </div>
+        <div class="form-group">
+                <input type="submit" value="SAVE" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+ 
+

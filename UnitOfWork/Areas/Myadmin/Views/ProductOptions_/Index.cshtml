@@ -1,11 +1,9 @@
-﻿@model IEnumerable<UnitOfWork.Models.Category>
+﻿@model IEnumerable<UnitOfWork.Models.ProductOptions>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-
 
 <style>
     body {
@@ -20,7 +18,7 @@
 </style>
 
 <div id="view-all">
-    @await Html.PartialAsync("_ViewAll", Model)
+    @await Html.PartialAsync("_ViewAllItems", Model)
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="form-modal">

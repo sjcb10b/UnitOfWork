@@ -1,0 +1,159 @@
+﻿@model UnitOfWork.Models.Products
+
+@{
+    ViewData["Title"] = "Create";
+    //Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "";
+}
+<style>
+    hr {
+        height: 1px;
+        background-color: #ccc;
+        border: none;
+    }
+
+    .bootstrap-select > .dropdown-toggle::after {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        margin-top: -2px;
+        vertical-align: middle;
+    }
+    .form-control {
+    
+    border: 1px solid #2c455e  !important;
+    
+    }
+
+    .form-select {
+        border: 1px solid #2c455e !important;
+    }
+
+</style>
+
+ 
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+
+    <form asp-area="Myadmin" asp-action="AddOEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+       
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+        <div class="row">
+            <div class="col-md-12">
+            <div class="form-group">
+                
+
+                    <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+         </div>
+        <div class="row">
+            <div class="col-md-6">
+                        <div class="form-group">
+                   
+                            <label asp-for="Category" class="control-label"></label>
+                            <select asp-for="Category" class="form-select" asp-items="ViewBag.CategoryName">
+                                <option value=""> --- Select Option ---</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                            </>
+                        </div>
+               </div>
+                <div class="col-md-6">
+                        <div class="form-group">
+                          
+                            <label asp-for="Price" class="control-label"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                         </div>
+                </div>
+                 
+         </div><!--end row-->
+
+        <div class="row">
+            <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label asp-for="Qty" class="control-label"></label>
+                        <input asp-for="Qty" class="form-control" />
+                        <span asp-validation-for="Qty" class="text-danger"></span>
+                    </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="YesNo" class="control-label"></label>
+                    <select asp-for="YesNo" class="form-select" asp-items="ViewBag.YesNo">
+                        <option value=""> --- Select Option ---</option>
+                    </select>
+                    <span asp-validation-for="YesNo" class="text-danger"></span>
+                </div>
+
+             </div> 
+
+            </div><!--end row-->
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="ImageA" class="control-label"></label>
+                <input asp-for="ImageA" class="form-control" />
+                <span asp-validation-for="ImageA" class="text-danger"></span>
+            </div>
+
+            </div>
+            <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="ImageB" class="control-label"></label>
+                <input asp-for="ImageB" class="form-control" />
+                <span asp-validation-for="ImageB" class="text-danger"></span>
+            </div>
+
+
+            </div><!--end row-->
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label><br />
+                    <textarea asp-for="Description" rows="10" cols="90"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                </div>
+             </div>
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+               </div>
+               </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    
+</div>
+

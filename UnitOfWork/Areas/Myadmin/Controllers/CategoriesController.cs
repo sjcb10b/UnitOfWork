@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UnitOfWork.Data;
 using UnitOfWork.Models;
+using static UnitOfWork.Helper;
 
 namespace UnitOfWork.Areas.Myadmin.Controllers
 {
@@ -23,100 +24,130 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
         // GET: Myadmin/Categories
         public async Task<IActionResult> Index()
         {
-              return _context.categories != null ? 
-                          View(await _context.categories.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.categories'  is null.");
+            return View(await _context.categories.ToListAsync());
         }
 
         // GET: Myadmin/Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.categories == null)
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null || _context.categories == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var category = await _context.categories
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(category);
+        //}
+
+        //// GET: Myadmin/Categories/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        [NoDirectAccess]
+     
+        public async Task<IActionResult> AddOEdit(int id = 0)
+         {
+            if (id == 0)
             {
-                return NotFound();
+                return View(new Category());
+            }
+            else
+            {
+                var category = await _context.categories.FindAsync(id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                return View(category);
+
             }
 
-            var category = await _context.categories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+         }
 
-            return View(category);
-        }
 
-        // GET: Myadmin/Categories/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+
+
 
         // POST: Myadmin/Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DisplayOrder,CreatedDate,ImageCategoryA,slug,Description")] Category category)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(category);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,Name,DisplayOrder,CreatedDate,ImageCategoryA,slug,Description")] Category category)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(category);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(category);
+        //}
 
-        // GET: Myadmin/Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.categories == null)
-            {
-                return NotFound();
-            }
+        //GET: Myadmin/Categories/Edit/5
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null || _context.categories == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var category = await _context.categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            return View(category);
-        }
+        //    var category = await _context.categories.FindAsync(id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(category);
+        //}
 
         // POST: Myadmin/Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,DisplayOrder,CreatedDate,ImageCategoryA,slug,Description")] Category category)
+        public async Task<IActionResult> AddOEdit(int id, [Bind("Id,Name,DisplayOrder,CreatedDate,ImageCategoryA,slug,Description")] Category category)
         {
-            if (id != category.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
+                //Insert
+                if (id == 0)
                 {
-                    _context.Update(category);
+                    //category.Date = DateTime.Now;
+                    _context.Add(category);
                     await _context.SaveChangesAsync();
+
                 }
-                catch (DbUpdateConcurrencyException)
+                //Update
+                else
                 {
-                    if (!CategoryExists(category.Id))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(category);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!CategoryExists(category.Id))
+                        { return NotFound(); }
+                        else
+                        { throw; }
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.categories.ToList()) });
             }
-            return View(category);
+            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOEdit", category) });
+
+
+
+
         }
 
         // GET: Myadmin/Categories/Delete/5

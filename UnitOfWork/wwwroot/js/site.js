@@ -35,9 +35,9 @@ showInPopup = (url, title) => {
             $('#form-modal .modal-title').html(title);
             $('#form-modal').modal('show');
             // to make popup draggable
-            $('.modal-dialog').draggable({
-                handle: ".modal-header"
-            });
+            //$('.modal-dialog').draggable({
+             //   handle: ".modal-header"
+            ///});
         }
     })
 }
@@ -59,6 +59,8 @@ jQueryAjaxPost = form => {
                 }
                 else
                     $('#form-modal .modal-body').html(res.html);
+                location.reload();
+
             },
             error: function (err) {
                 console.log(err)
@@ -82,6 +84,7 @@ jQueryAjaxDelete = form => {
                 processData: false,
                 success: function (res) {
                     $('#view-all').html(res.html);
+                    location.reload();
                 },
                 error: function (err) {
                     console.log(err)
