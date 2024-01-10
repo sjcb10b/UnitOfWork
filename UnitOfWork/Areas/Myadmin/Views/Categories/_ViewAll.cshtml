@@ -52,7 +52,7 @@
              
             <th>
 
-                <a onclick="showInPopup('@Url.Action("AddOEdit","Categories",null,Context.Request.Scheme)','New Item')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Item</a>
+                <a onclick="showInPopup('@Url.Action("AddOEdit","Categories",null,Context.Request.Scheme)','New Item')" class="btn btn-primary  btn-sm  text-white"><i class="fas fa-random"></i> New Item</a>
             </th>
         </tr>
     </thead>
@@ -88,11 +88,12 @@
            
             
             <td>
-                <a onclick="showInPopup('@Url.Action("AddOEdit","Categories",new {id=item.Id},Context.Request.Scheme)','Update Item')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                <a onclick="showInPopup('@Url.Action("AddOEdit","Categories",new {id=item.Id},Context.Request.Scheme)','Update Item')" class="btn btn-info btn-sm text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
                             <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
                                 <input type="hidden" asp-for="@item.Id" />
-                                <input type="submit" value="Delete" class="btn btn-danger" />
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
                             </form>
+                    <a asp-action="AddPic" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Photo</a>
                              
             </td>
         </tr>

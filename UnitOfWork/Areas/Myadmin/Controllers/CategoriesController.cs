@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using UnitOfWork.Data;
 using UnitOfWork.Models;
 using static UnitOfWork.Helper;
@@ -15,10 +16,13 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        IWebHostEnvironment _environment;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
+
         }
 
         // GET: Myadmin/Categories
@@ -27,29 +31,7 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
             return View(await _context.categories.ToListAsync());
         }
 
-        // GET: Myadmin/Categories/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null || _context.categories == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var category = await _context.categories
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(category);
-        //}
-
-        //// GET: Myadmin/Categories/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+   
 
         [NoDirectAccess]
      
@@ -75,45 +57,10 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
 
 
 
-
-        // POST: Myadmin/Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Name,DisplayOrder,CreatedDate,ImageCategoryA,slug,Description")] Category category)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(category);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(category);
-        //}
-
-        //GET: Myadmin/Categories/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _context.categories == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var category = await _context.categories.FindAsync(id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(category);
-        //}
-
-        // POST: Myadmin/Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+ 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOEdit(int id, [Bind("Id,Name,DisplayOrder,CreatedDate,ImageCategoryA,slug,Description")] Category category)
+        public async Task<IActionResult> AddOEdit(int id, [Bind("Id,Name,DisplayOrder,CreatedDate,slug,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -168,8 +115,72 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
             return View(category);
         }
 
-        // POST: Myadmin/Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // add picture 
+        // GET:  Id
+        public async Task<IActionResult> AddPic(int? id)
+        {
+            if (id == null || _context.categories == null)
+            {
+                return NotFound();
+            }
+
+            var categorym = await _context.categories.FindAsync(id);
+            if (categorym == null)
+            {
+                return NotFound();
+            }
+            return View(categorym);
+        }
+        // add picture function 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddPic(int id, [Bind("Id,photo")] Category category)
+        {
+            String filename = "";
+            if (category.photo != null)
+            {
+                String uploadfolder = Path.Combine(_environment.WebRootPath, "images");
+                filename = Guid.NewGuid().ToString() + "_" + category.photo.FileName;
+                String filepath = Path.Combine(uploadfolder, filename);
+                category.photo.CopyTo(new FileStream(filepath, FileMode.Create));
+            }
+
+            var data = _context.categories.FirstOrDefault(x => x.Id == id);
+
+            if (data != null)
+            {
+                data.Id = category.Id;
+                data.ImageCategoryA = filename;
+            }
+
+            try
+            {
+                _context.Update(data);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CategoryExists(category.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            //return View(inventoryNModel);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+
+
+
+
+            // POST: Myadmin/Categories/Delete/5
+            [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

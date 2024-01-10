@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using UnitOfWork.Data.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UnitOfWork.Models
 {
@@ -18,6 +19,9 @@ namespace UnitOfWork.Models
         //public string slug => Name.Replace(' ', '-').ToLower();
         public string? slug { get; set; }
         public string? Description { get; set; }
+        [NotMapped]
+        [DisplayName("Image Category")]
+        public IFormFile? photo { get; set; } = null;
 
     }
 }

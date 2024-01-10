@@ -27,23 +27,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="DisplayOrder" class="control-label"></label>
-                    <input asp-for="DisplayOrder" class="form-control" />
-                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
-                </div>
-            </div>
-           
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="ImageCategoryA" class="control-label"></label>
-                    <input asp-for="ImageCategoryA" class="form-control" />
-                    <span asp-validation-for="ImageCategoryA" class="text-danger"></span>
-                </div>
-            </div>
-        </div>  
+        
         
 
         <div class="row">
@@ -61,6 +45,30 @@
                     <input asp-for="CreatedDate" class="form-control" />
                     <span asp-validation-for="CreatedDate" class="text-danger"></span>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DisplayOrder" class="control-label"></label>
+                    <input asp-for="DisplayOrder" class="form-control" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                Category Image<br />
+                @if (Model.ImageCategoryA == null)
+                {
+                    <img src="/images/empty.jpg" width="100px" height="100px" />
+                }
+                else
+                {
+                  <img src="/images/@Model.ImageCategoryA" width="100px" height="100px" />  
+                }
+
+
+                
             </div>
         </div>
         <div class="row">

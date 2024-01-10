@@ -46,6 +46,7 @@ namespace UnitOfWork.Models
         public IFormFile ProfilePhoto { get; set; }
 
         [NotMapped]
+        
         public string BreifPhotoName { get; set; }
 
     }
