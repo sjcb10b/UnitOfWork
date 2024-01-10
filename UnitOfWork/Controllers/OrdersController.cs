@@ -70,7 +70,7 @@ namespace UnitOfWork.Controllers
             return RedirectToAction(nameof(ShoppingCart));
         }
 
-        public IActionResult ThankYou()
+        public async Task<IActionResult> ThankYou()
         {
             //var items = await _ordersCartService.GetAllAsync();
 
@@ -116,7 +116,7 @@ namespace UnitOfWork.Controllers
         }
 
 
-        public IActionResult CheckOut()
+        public async Task<IActionResult> CheckOut()
         {
 
             var items = _shoppingCart.GetShoppingCartItems();

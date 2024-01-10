@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace UnitOfWork.Models
+﻿namespace UnitOfWork.Models
 {
     public class Merchandise
     {
@@ -11,7 +9,5 @@ namespace UnitOfWork.Models
         public float Price { get; set; }
         public int Qty { get; set; }
         public string? ImageA { get; set; }
-        [NotMapped]
-        public IFormFile photo { get; set; }
     }
 }
