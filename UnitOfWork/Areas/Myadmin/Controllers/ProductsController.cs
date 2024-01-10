@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using UnitOfWork.Data;
+using UnitOfWork.Migrations;
 using UnitOfWork.Models;
 using static UnitOfWork.Helper;
 
@@ -17,10 +19,12 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        IWebHostEnvironment _environment;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, IWebHostEnvironment Environment)
         {
             _context = context;
+            _environment = Environment;
         }
 
         // GET: Products
@@ -85,6 +89,7 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
             {
                 ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name");
                 ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno");
+
                 return View(new Products());
             }
             else
@@ -97,41 +102,11 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
                 }
                 ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name", products.Category);
                 ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno", products.YesNo);
-
+               
                 return View(products);
 
             }
         }
-
-
-
-
-
-
-        // GET: Products/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _context.products == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var products = await _context.products.FindAsync(id);
-        //    if (products == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name", products.Category);
-        //    ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno", products.YesNo);
-
-        //    return View(products);
-        //}
-
-
-
-
-
-
 
 
         // POST: Products/Edit/5
@@ -139,14 +114,14 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOEdit(int id, [Bind("Id,Title,Description,Category,Price,Qty,ImageA,ImageB,YesNo, CreatedDate")] Products products)
+        public async Task<IActionResult> AddOEdit(int id, [Bind("Id,Title,Description,Category,Price,Qty,YesNo, CreatedDate")] Products products)
         {
             if (ModelState.IsValid)
             {
                 //Insert
                 if (id == 0)
                 {
-                  
+
 
                     products.CreatedDate = DateTime.Now;
                     _context.Add(products);
@@ -173,6 +148,82 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
             }
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOEdit", products) });
         }
+
+        // to udate the pictures 
+
+        public async Task<IActionResult> EditPicture(int Id =0)
+        {
+            if (Id == 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var products = await _context.products.FindAsync(Id);
+                return View(products);
+             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPic(int id, [Bind("Id, photo")] Products products)
+        {
+            String filename = "";
+            if (products.photo != null)
+            {
+                String uploadfolder = Path.Combine(_environment.WebRootPath, "mercha");
+                filename = Guid.NewGuid().ToString() + "_" + products.photo.FileName;
+                String filepath = Path.Combine(uploadfolder, filename);
+                products.photo.CopyTo(new FileStream(filepath, FileMode.Create));
+            }
+
+            Products m = new Products
+            {
+                Title = products.Title,
+                ImageA = filename
+            };
+            
+            _context.Update(m);
+            await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+            ViewBag.success = "Record Updated";
+
+            return View();
+
+
+        }
+
+
+
+
+
+            // GET: Products/Edit/5
+            //public async Task<IActionResult> Edit(int? id)
+            //{
+            //    if (id == null || _context.products == null)
+            //    {
+            //        return NotFound();
+            //    }
+
+            //    var products = await _context.products.FindAsync(id);
+            //    if (products == null)
+            //    {
+            //        return NotFound();
+            //    }
+            //    ViewData["CategoryName"] = new SelectList(_context.categories, "slug", "Name", products.Category);
+            //    ViewData["YesNo"] = new SelectList(_context.displayYesNo, "optionsyesno", "yesno", products.YesNo);
+
+            //    return View(products);
+            //}
+
+
+
+
+
+
+
+
+  
 
 
 

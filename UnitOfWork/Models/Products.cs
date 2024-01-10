@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using UnitOfWork.Data.Base;
 
 namespace UnitOfWork.Models
@@ -8,12 +9,16 @@ namespace UnitOfWork.Models
         
         
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public string? Description { get; set; }
         public string Category { get; set; }
         public float Price { get; set; }
         public int Qty { get; set; }
         public string? ImageA { get; set; }
+
+        [NotMapped]
+        public IFormFile? photo { get; set; }
+
         public string? ImageB { get; set; }
         [DisplayName("Yes/No Display Options(Products)")]
         public int? YesNo { get; set; } = 1;
@@ -25,7 +30,5 @@ namespace UnitOfWork.Models
         public string? Option4 { get; set; }
         public string? Option5 { get; set; }
         public string? Option6 { get; set; }
-        public string slug => Title.Replace(' ', '-').ToLower();
-
     }
 }
