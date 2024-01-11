@@ -40,7 +40,15 @@
                             
                          <div class="figure">
                         <a asp-action="ProductDetail" asp-route-id="@item.Id" asp-route-slug="@item.slug">
-                                    <img class="card-img-top" src="~/images/mainPizza.jpg" alt="@item.Title" />
+                                    
+                                    @if (item.ImageA == null)
+                                    {
+                                        <img class="card-img-top" src="/images/empty.jpg" width="500px" height="350px" alt="@item.Title" />
+                                    }
+                                    else
+                                    {
+                                        <img class="card-img-top" src="/images/@item.ImageA" width="500px" height="350px" alt="@item.Title" />
+                                    }
                        
                         </a>
                          </div>

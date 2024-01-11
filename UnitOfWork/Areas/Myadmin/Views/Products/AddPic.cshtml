@@ -1,34 +1,34 @@
-﻿@model UnitOfWork.Models.Category
+﻿@model UnitOfWork.Models.Products
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
- 
+<h1>Edit</h1>
 
-<h4>Add Image Category</h4>
+<h4>Products</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddPic" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-          
+            <input type="hidden" asp-for="Title" />
             <div class="form-group">
 
-                @if (Model.ImageCategoryA == null)
+                @if (Model.ImageA == null)
                 {
                     <img src="/images/empty.jpg" width="100px" height="100px" />
                 }
                 else
                 {
-                    <img src="/images/@Model.ImageCategoryA" width="100px" height="100px" />
+                    <img src="/images/@Model.ImageA" width="100px" height="100px" />
                 }
-                 
-                 
+
+
             </div>
-             
+
             <div class="form-group">
                 <label asp-for="photo" class="control-label"></label>
                 <input asp-for="photo" class="form-control" />
@@ -45,3 +45,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

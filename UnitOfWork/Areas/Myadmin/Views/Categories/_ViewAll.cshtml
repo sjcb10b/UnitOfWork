@@ -69,7 +69,15 @@
                     @counter
                 </td>
                 <td>
-                   <img src="/images/@item.ImageCategoryA" width="100px" height="100px" />
+                    @if(item.ImageCategoryA == null)
+                    {
+                        <img src="/images/empty.jpg" width="100px" height="100px" />
+                    }
+                    else
+                    {
+                       <img src="/images/@item.ImageCategoryA" width="100px" height="100px" />  
+                    }
+                   
                 </td>
                 <td>
                 @Html.DisplayFor(modelItem => item.Name)

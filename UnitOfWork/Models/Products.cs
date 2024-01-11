@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using UnitOfWork.Data.Base;
 
 namespace UnitOfWork.Models
@@ -26,6 +27,10 @@ namespace UnitOfWork.Models
         public string? Option5 { get; set; }
         public string? Option6 { get; set; }
         public string? slug => Title.Replace(' ', '-').ToLower();
+
+        [NotMapped]
+        [DisplayName("Image Product")]
+        public IFormFile? photo { get; set; } = null;
 
     }
 }

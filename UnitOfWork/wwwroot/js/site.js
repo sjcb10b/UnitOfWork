@@ -59,11 +59,11 @@ jQueryAjaxPost = form => {
                 }
                 else
                     $('#form-modal .modal-body').html(res.html);
-                location.reload();
+                //location.reload();
 
             },
             error: function (err) {
-                console.log(err)
+                //console.log(err)
             }
         })
         //to prevent default form submit event

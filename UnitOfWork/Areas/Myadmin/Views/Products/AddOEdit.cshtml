@@ -103,34 +103,14 @@
 
 
 
-        <div class="row">
-            <div class="col-md-6">
-
-            <div class="form-group">
-                <label asp-for="ImageA" class="control-label"></label>
-                <input asp-for="ImageA" class="form-control" />
-                <span asp-validation-for="ImageA" class="text-danger"></span>
-            </div>
-
-            </div>
-            <div class="col-md-6">
-
-            <div class="form-group">
-                <label asp-for="ImageB" class="control-label"></label>
-                <input asp-for="ImageB" class="form-control" />
-                <span asp-validation-for="ImageB" class="text-danger"></span>
-            </div>
-
-
-            </div><!--end row-->
-
+       
 
 
             <div class="row">
                 <div class="col-md-12">
                 <div class="form-group">
                     <label asp-for="Description" class="control-label"></label><br />
-                    <textarea asp-for="Description" rows="10" cols="90"></textarea>
+                    <textarea asp-for="Description" rows="10" cols="130"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 </div>
@@ -138,15 +118,36 @@
 
 
 
-            <div class="row">
-                <div class="col-md-12">
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+          
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group text-center">
+                    @if (@Model.ImageA == null)
+                    {
+                        <img src="/images/empty.jpg" width="200px" height="200px" />
+                    }
+                    else
+                    {
+                        <img src="/images/@Model.ImageA" width="200px" height="200px" />
+                    }
+                </div>
+
             </div>
-               </div>
-               </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label asp-for="CreatedDate" class="control-label"></label>
+                    <input asp-for="CreatedDate" class="form-control" />
+                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                </div>
+
+
+            </div><!--end row-->
+        </div>
+
+
 
 
 

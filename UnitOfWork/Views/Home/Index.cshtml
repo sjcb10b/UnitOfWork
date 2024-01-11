@@ -3,6 +3,12 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .img-fluid {
+        max-width: 100%;
+        height: revert-layer !important;
+    }
+</style>
 
 <!--// banner corousel  -->
 
@@ -56,7 +62,23 @@
                 <div class="card card-span h-100">
                     <div class="position-relative">
                            <a asp-action="DisplayFullCategory" asp-route-id="@category.Id" asp-route-slug="@category.slug">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-1.png" alt="..." /></a>
+
+                                @if (category.ImageCategoryA == null)
+                                {
+                                    <img class="img-fluid rounded-3 w-100" src="/images/empty.jpg" width="382px" height="323px" />
+                                }
+                                else
+                                {
+                                    <img class="img-fluid rounded-3 w-100" src="/images/@category.ImageCategoryA" width="383px" height="323px" />
+                                }
+
+
+                   
+                        
+                        
+                        
+                        
+                        
                         <div class="card-actions">
                             <div class="badge badge-foodwagon bg-primary p-4">
                                 <div class="d-flex flex-between-center">
