@@ -54,6 +54,33 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
             //              Problem("Entity set 'ApplicationDbContext.orders'  is null.");
         }
 
+        public async Task<IActionResult> OrderDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var orders = (from s in _context.orders
+                          select s).ToList();
+
+            var itemsOrdered = (from c in _context.orderedItems
+                                select c).ToList();
+
+
+
+
+            var fullOrdersD = from s in orders
+                             join st in itemsOrdered on s.ShoppingCartIdCustomer_o equals st.ShoppingCartId_o
+                             where s.Id == id
+                             select new OrdersViewModel { orders = s, orderedItems = st };
+
+            return View(fullOrdersD);
+
+
+        }
+
+
         // GET: Myadmin/Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {

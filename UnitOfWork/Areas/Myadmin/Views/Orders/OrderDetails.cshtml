@@ -1,0 +1,85 @@
+﻿@model IEnumerable<UnitOfWork.Models.OrdersViewModel>
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    body {
+        font-size: 12px;
+    }
+
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        width: 300px !important;
+        border: 1px solid !important;
+    }
+</style>
+
+
+
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                #Order ID#
+            </th>
+            
+            <th>
+                Qty
+            </th>
+            <th>
+                Options Description
+            </th>
+            
+            <th>
+                TotalAmount
+            </th>
+            <th>
+               To Delivery
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>#00000-00 @item.orders.Id </td>
+                <td>@item.orderedItems.Amount_o</td>
+                <td>@item.orderedItems.options1_o<br />
+                    @item.orderedItems.options2_o<br />
+                    @item.orderedItems.options3_o<br />
+                    @item.orderedItems.options4_o<br />
+                    @item.orderedItems.options5_o<br />
+                    @item.orderedItems.options6_o<br />
+
+                </td>
+                <td>@item.orders.TotalAmount</td>
+
+                <td>@item.orders.FirstName_o - @item.orders.LastName_o<br />
+                    @item.orders.Street_o - @item.orders.ZipCode_o
+                
+                </td>
+             
+                
+
+                <td> </td>
+            </tr>
+        }
+</table>
+
+<div>
+    <a asp-action="Index" asp-controller="Orders" class="btn btn-primary btn-sm">Back to Orders</a>
+</div>
+

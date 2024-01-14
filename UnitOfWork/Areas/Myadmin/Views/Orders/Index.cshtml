@@ -30,11 +30,9 @@
     <thead>
         <tr>
             <th>
-                #
-            </th>
-            <th>
                 Order ID#
             </th>
+            
             <th>
                Name
             </th>
@@ -64,14 +62,15 @@
         <tr>
             <td>#00000-00 @item.orders.Id </td>
 
-            <td>@item.orders.FirstName_o </td>
+             <td>@item.orders.FirstName_o </td>
             <td>@item.orders.LastName_o</td>
+
             <td>@item.orders.Street_o</td>
             <td>@item.orders.ZipCode_o</td>
-            <td>@item.orderedItems.Qty_o</td>
+          
             <td>@item.orders.TotalAmount</td>
 
-            <td> <a asp-action="OrderDetails" asp-route-id="@item.orders.ShoppingCartIdCustomer_o" class="btn btn-primary btn-sm">Order Detail</a></td>
+            <td> <a asp-action="OrderDetails" asp-route-id="@item.orders.Id" class="btn btn-primary btn-sm">Order Detail</a></td>
         </tr>
     }
     </table>
