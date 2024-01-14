@@ -1,108 +1,77 @@
-﻿@model IEnumerable<UnitOfWork.Models.Orders>
-
+﻿@model IEnumerable<UnitOfWork.Models.OrdersViewModel>
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Index</h1>
+<style>
+    body {
+        font-size: 12px;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+    .table thead th {
+        color: #000000;
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+    }
+     .dataTables_wrapper  .dataTables_filter input {
+     
+    width: 300px !important;
+    border: 1px solid !important;
+     }
+</style>
+
+
+
+
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName_o)
+                #
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName_o)
+                Order ID#
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company_o)
+               Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Street_o)
+               Last Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City_o)
+               Street
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.State_o)
+                Zip Code
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ZipCode_o)
+                TotalAmount
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone_o)
+                Details
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ccc_name_o)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ccc_number_o)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.expiration_o)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cvv_o)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShoppingCartIdCustomer_o)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+
+
+ 
+    @foreach (var item in Model)
+    {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ccc_name_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ccc_number_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.expiration_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cvv_o)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShoppingCartIdCustomer_o)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <td>#00000-00 @item.orders.Id </td>
+
+            <td>@item.orders.FirstName_o </td>
+            <td>@item.orders.LastName_o</td>
+            <td>@item.orders.Street_o</td>
+            <td>@item.orders.ZipCode_o</td>
+            <td>@item.orderedItems.Qty_o</td>
+            <td>@item.orders.TotalAmount</td>
+
+            <td> <a asp-action="OrderDetails" asp-route-id="@item.orders.ShoppingCartIdCustomer_o" class="btn btn-primary btn-sm">Order Detail</a></td>
         </tr>
-}
-    </tbody>
-</table>
+    }
+    </table>

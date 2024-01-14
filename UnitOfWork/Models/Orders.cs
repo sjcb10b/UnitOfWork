@@ -21,6 +21,7 @@ namespace UnitOfWork.Models
         public string? expiration_o { get; set; }
         public string? cvv_o { get; set; }
         public string ShoppingCartIdCustomer_o { get; set; }
+        public string? TotalAmount { get; set; }
 
     }
 

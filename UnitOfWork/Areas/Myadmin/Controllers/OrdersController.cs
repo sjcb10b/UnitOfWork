@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UnitOfWork.Data;
+using UnitOfWork.Migrations;
 using UnitOfWork.Models;
 
 namespace UnitOfWork.Areas.Myadmin.Controllers
@@ -14,6 +15,11 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        // order items and orders
+
+
+        
+
 
         public OrdersController(ApplicationDbContext context)
         {
@@ -23,9 +29,29 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
         // GET: Myadmin/Orders
         public async Task<IActionResult> Index()
         {
-              return _context.orders != null ? 
-                          View(await _context.orders.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.orders'  is null.");
+            var orders = (from s in _context.orders
+                            select s).ToList();
+
+            var itemsOrdered = (from c in  _context.orderedItems
+                           select c).ToList();
+
+
+
+
+            var fullOrders = from s in orders
+                             join st in itemsOrdered on s.ShoppingCartIdCustomer_o equals st.ShoppingCartId_o
+                             
+                            select new OrdersViewModel { orders = s, orderedItems = st };
+
+            return View(fullOrders);
+
+
+
+
+
+            //return _context.orders != null ? 
+            //              View(await _context.orders.ToListAsync()) :
+            //              Problem("Entity set 'ApplicationDbContext.orders'  is null.");
         }
 
         // GET: Myadmin/Orders/Details/5

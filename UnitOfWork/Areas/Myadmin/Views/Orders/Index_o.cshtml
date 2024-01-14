@@ -1,0 +1,108 @@
+﻿@model IEnumerable<UnitOfWork.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ccc_name_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ccc_number_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.expiration_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cvv_o)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShoppingCartIdCustomer_o)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ccc_name_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ccc_number_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.expiration_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cvv_o)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoppingCartIdCustomer_o)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
