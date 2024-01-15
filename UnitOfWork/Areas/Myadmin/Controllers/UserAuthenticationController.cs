@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UnitOfWork.Data.Services;
 using UnitOfWork.Models;
 
 namespace UnitOfWork.Areas.Myadmin.Controllers
 {
     [Area("Myadmin")]
+    [Authorize]
     public class UserAuthenticationController : Controller
     {
        

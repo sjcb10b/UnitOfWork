@@ -3,73 +3,34 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link " href="#">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard   Admin </span>
             </a>
         </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span> My Settings</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-                <li>
-                    <a  asp-area="Myadmin" asp-controller="Categories" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Categories</span>
-                    </a>
-                </li>
-               <li>
-                    <a asp-area="Myadmin" asp-controller="Products" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Products</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a asp-area="Myadmin" asp-controller="ProductOptions" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Products Options</span>
-                    </a>
-                </li>
-
-          @*     
-                <li>
-                    <a  asp-controller="Merchandise" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Merchandise</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a asp-controller="Items" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Items</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a asp-controller="Country" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Country</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="City" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>City</span>
-                    </a>
-                </li>*@
-
-
-                <li>
-                    <a asp-controller="Customer" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Customer</span>
-                    </a>
-                </li>
-
-
-                 
-            </ul>
-        </li><!-- End Components Nav -->
+     
+       
  
          
         <li class="nav-heading">Orders Info</li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" asp-area="Myadmin" asp-controller="Categories" asp-action="Index">
+                <i class="bi bi-person"></i><span>Categories</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" asp-area="Myadmin" asp-controller="Products" asp-action="Index">
+                <i class="bi bi-person"></i><span>Products</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" asp-area="Myadmin" asp-controller="ProductOptions" asp-action="Index">
+                <i class="bi bi-person"></i><span>Products Options</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" asp-area="Myadmin" asp-controller="Orders" asp-action="Index">
