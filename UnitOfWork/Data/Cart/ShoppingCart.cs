@@ -164,6 +164,11 @@ namespace UnitOfWork.Data.Cart
 
         }
 
+        public string GenerateMyid()
+        {
+            return Guid.NewGuid().ToString("N");
+        }
+
         
 
 

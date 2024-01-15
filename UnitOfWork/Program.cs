@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using UnitOfWork.Data;
 using UnitOfWork.Data.Cart;
 using UnitOfWork.Data.Services;
+using UnitOfWork.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,11 @@ builder.Services.Configure<RouteOptions>(options =>
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulConnection")));
+
+builder.Services.ConfigureApplicationCookie(op => op.LoginPath = "/UserAuthentication/Login");
+builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 builder.Services.AddScoped<IProductServices, ProductServices>();
@@ -29,7 +36,7 @@ builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped<IOrderedItemsService, OrderedItemsService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
-
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
@@ -51,6 +58,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 app.UseSession();
 app.UseAuthorization();
 

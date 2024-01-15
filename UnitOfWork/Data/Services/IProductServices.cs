@@ -13,7 +13,7 @@ namespace UnitOfWork.Data.Services
         Task UpdateProductAsync(Products data);
         Task<bool> DeleteProductAsync(int id);
         Task<IEnumerable<Products>> GetAllProducts();
-     
+        Task<IEnumerable<Products>> MediumProducts();
 
     }
 }

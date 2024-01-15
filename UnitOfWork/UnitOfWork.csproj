@@ -464,6 +464,7 @@
   <ItemGroup>
     <Folder Include="Areas\Myadmin\Data\" />
     <Folder Include="Areas\Myadmin\Models\" />
+    <Folder Include="Views\UserAuthentication\" />
     <Folder Include="wwwroot\mercha\" />
     <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\productImages\" />

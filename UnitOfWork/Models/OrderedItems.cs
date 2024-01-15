@@ -18,5 +18,8 @@ namespace UnitOfWork.Models
         public string? options4_o { get; set; }
         public string? options5_o { get; set; }
         public string? options6_o { get; set; }
+
+        public string forders { get; set; }
+         
     }
 }

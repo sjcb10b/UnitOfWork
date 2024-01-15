@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnitOfWork.Data;
 
@@ -11,9 +12,11 @@ using UnitOfWork.Data;
 namespace UnitOfWork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240114165135_new column 6")]
+    partial class newcolumn6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -526,9 +529,8 @@ namespace UnitOfWork.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("forders")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("forders")
+                        .HasColumnType("int");
 
                     b.Property<string>("options1_o")
                         .HasColumnType("nvarchar(max)");
@@ -607,9 +609,6 @@ namespace UnitOfWork.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("expiration_o")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("forderO")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -39,7 +39,7 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
 
 
             var fullOrders = from s in orders
-                             join st in itemsOrdered on s.ShoppingCartIdCustomer_o equals st.ShoppingCartId_o
+                             join st in itemsOrdered on s.forderO equals st.forders
                              
                             select new OrdersViewModel { orders = s, orderedItems = st };
 
@@ -71,8 +71,8 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
 
 
             var fullOrdersD = from s in orders
-                             join st in itemsOrdered on s.ShoppingCartIdCustomer_o equals st.ShoppingCartId_o
-                             where s.Id == id
+                             join st in itemsOrdered on s.forderO equals st.forders
+                              where s.Id == id
                              select new OrdersViewModel { orders = s, orderedItems = st };
 
             return View(fullOrdersD);

@@ -138,7 +138,10 @@ namespace UnitOfWork.Controllers
         public async Task<IActionResult> FinalCheckOut([Bind("FirstName,LastName,Company,Street,City,State,ZipCode,Phone, ccc_name,ccc_number, cvv, expiration, ShoppingCartIdCustomer, TotalAmount")] OrdersCart ordersCart)
         {
              await _ordersCartService.AddAsync(ordersCart);
-              //await _context.orders.AddAsync(_orders);
+            //await _context.orders.AddAsync(_orders);
+
+            var relateItem = _shoppingCart.GenerateMyid();
+
 
             var _orders = new Orders
             {
@@ -155,8 +158,11 @@ namespace UnitOfWork.Controllers
                 expiration_o = ordersCart.expiration,
                 cvv_o = ordersCart.cvv,
                 ShoppingCartIdCustomer_o = ordersCart.ShoppingCartIdCustomer,
-                TotalAmount = ordersCart.TotalAmount
-               
+                TotalAmount = ordersCart.TotalAmount,
+                forderO =  relateItem,
+
+
+
             };
             // copy data to a new tab le 
             await _ordersService.AddAsync(_orders);
@@ -178,7 +184,8 @@ namespace UnitOfWork.Controllers
                     options3_o= item.options3,
                     options4_o= item.options4,
                     options5_o = item.options5,
-                    options6_o= item.options6
+                    options6_o= item.options6, 
+                    forders = relateItem, 
 
                 };
                 await _orderedItemsService.AddAsync(orderItem);

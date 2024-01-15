@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnitOfWork.Data;
 
@@ -11,9 +12,11 @@ using UnitOfWork.Data;
 namespace UnitOfWork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240114164045_new column")]
+    partial class newcolumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -526,10 +529,6 @@ namespace UnitOfWork.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("forders")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("options1_o")
                         .HasColumnType("nvarchar(max)");
 
@@ -547,6 +546,9 @@ namespace UnitOfWork.Migrations
 
                     b.Property<string>("options6_o")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ordersf")
+                        .HasColumnType("int");
 
                     b.Property<int>("products_oId")
                         .HasColumnType("int");
@@ -609,10 +611,12 @@ namespace UnitOfWork.Migrations
                     b.Property<string>("expiration_o")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("forderO")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nordersId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("nordersId");
 
                     b.ToTable("orders");
                 });
@@ -892,6 +896,17 @@ namespace UnitOfWork.Migrations
                         .IsRequired();
 
                     b.Navigation("products_o");
+                });
+
+            modelBuilder.Entity("UnitOfWork.Models.Orders", b =>
+                {
+                    b.HasOne("UnitOfWork.Models.OrderedItems", "norders")
+                        .WithMany()
+                        .HasForeignKey("nordersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("norders");
                 });
 
             modelBuilder.Entity("UnitOfWork.Models.ShoppingCartItem", b =>

@@ -23,6 +23,10 @@ namespace UnitOfWork.Models
         public string ShoppingCartIdCustomer_o { get; set; }
         public string? TotalAmount { get; set; }
 
+        public string? forderO { get; set;}
+
+        
+
     }
 
 

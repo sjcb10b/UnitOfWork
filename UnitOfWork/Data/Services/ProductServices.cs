@@ -46,6 +46,16 @@ namespace UnitOfWork.Data.Services
         }
 
 
+        public async Task<IEnumerable<Products>> MediumProducts()
+        {
+            int recordCount = 8;
+            var allproducts = await _context.products.Take(recordCount).ToListAsync();
+            return allproducts;
+
+        }
+
+
+
 
         public async Task<bool> DeleteProductAsync(int Id)
         {

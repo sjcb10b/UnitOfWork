@@ -32,6 +32,7 @@
                     </a>
                 </li>
 
+          @*     
                 <li>
                     <a  asp-controller="Merchandise" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Merchandise</span>
@@ -53,7 +54,9 @@
                     <a asp-controller="City" asp-action="Index">
                         <i class="bi bi-circle"></i><span>City</span>
                     </a>
-                </li>
+                </li>*@
+
+
                 <li>
                     <a asp-controller="Customer" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Customer</span>
@@ -69,7 +72,7 @@
         <li class="nav-heading">Orders Info</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" asp-controller="Orders" asp-action="Index">
+            <a class="nav-link collapsed" asp-area="Myadmin" asp-controller="Orders" asp-action="Index">
                 <i class="bi bi-person"></i>
                 <span>Orders</span>
             </a>

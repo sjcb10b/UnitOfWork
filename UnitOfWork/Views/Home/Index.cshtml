@@ -118,14 +118,17 @@
                     <h5 class="fw-bold text-danger fs-3 fs-lg-5 lh-sm my-6">How does it work</h5>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 col-md-3 mb-6">
+
+         
+                     <div class="col-sm-6 col-md-3 mb-6">
                         <div class="text-center">
                             <img class="shadow-icon" src="assets/img/gallery/location.png" height="112" alt="...">
                             <h5 class="mt-4 fw-bold">Select location</h5>
                             <p class="mb-md-0">Choose the location where your food will be delivered.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3 mb-6">
+
+                <div class="col-sm-6 col-md-3 mb-6">
                         <div class="text-center">
                             <img class="shadow-icon" src="assets/img/gallery/order.png" height="112" alt="...">
                             <h5 class="mt-4 fw-bold">Choose order</h5>
@@ -162,123 +165,48 @@
     </div>
     <div class="container">
         <div class="row h-100 gx-2 mt-7">
+
+
+            @foreach(Products products in Model.Products)
+            {
             <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
                 <div class="card card-span h-100">
                     <div class="position-relative">
-                        <a href="#"> <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-1.png" alt="..." /></a>
+                        <a href="#">
+                            
+                            
+                           
+                            @if (products.ImageA == null)
+                            {
+                                 <a asp-action="ProductDetail" asp-route-id="@products.Id" asp-route-slug="@products.slug">
+                            
+                                <img class="img-fluid rounded-3 w-100" src="/images/empty.jpg" alt="@products.Title" width="382px" height="323px" /></a>
+                            }
+                            else
+                            {
+                                 <a asp-action="ProductDetail" asp-route-id="@products.Id" asp-route-slug="@products.slug">
+                            
+                                <img class="img-fluid rounded-3 w-100" src="/images/@products.ImageA" alt="@products.Title" width="383px" height="323px" /></a>
+                            }
+
+
                         <div class="card-actionsb">
                             <div class="p-4">
-                                <a href="#">LUIS MALNATIS CRUSTLESS</a>
-                                Price $25
+                                <a href="#">@products.Title</a><br>
+                                        Price: $@products.Price
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <a href="#"> <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-2.png" alt="..." /></a>
-                        <div class="card-actionsb">
-                            <div class="p-4">
-                                <a href="#"> LUIS MALNATIS CRUSTLESS</a>
 
-                                Price $25
-                            </div>
-                        </div>
+            }
 
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-3.png" alt="..." />
-                        <div class="card-actionsb">
-                            <div class="p-4">
-                                <a href="#"> LUIS MALNATIS CRUSTLESS</a>
-
-                                Price $25
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-4.png" alt="..." />
-                        <div class="card-actionsb">
-                            <div class="p-4">
-                                <a href="#"> LUIS MALNATIS CRUSTLESS</a>
-
-                                Price $25
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+          </div>
     </div><!-- end of .container-->
 
-    <div class="container">
-        <div class="row h-100 gx-2 mt-7">
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-1.png" alt="..." />
-                        <div class="card-actions">
-                            <div class="badge badge-foodwagon  p-4">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-2.png" alt="..." />
-                        <div class="card-actions">
-                            <div class="badge badge-foodwagon p-4">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-3.png" alt="..." />
-                        <div class="card-actions">
-                            <div class="badge badge-foodwagon  p-4">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                <div class="card card-span h-100">
-                    <div class="position-relative">
-                        <img class="img-fluid rounded-3 w-100" src="assets/img/gallery/discount-item-4.png" alt="..." />
-                        <div class="card-actions">
-                            <div class="badge badge-foodwagon  p-4">
-                                <div class="d-flex flex-between-center">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div><!-- end of .container-->
+ 
 
 
 

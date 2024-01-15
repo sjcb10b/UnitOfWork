@@ -40,7 +40,7 @@ namespace UnitOfWork.Controllers
         {
             DisplayViews displayViews = new DisplayViews();
 
-            displayViews.Products = (List<Products>) await _productServices.GetAllProducts();
+            displayViews.Products = (List<Products>) await _productServices.MediumProducts();
             displayViews.categories = (List<Category>) await _categoryService.GetAllAsync();
 
 
