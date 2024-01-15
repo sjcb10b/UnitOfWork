@@ -38,7 +38,8 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
 
             if (result.StatusCode == 1)
             {
-                return RedirectToAction("DashBoard", "Home");
+                //return RedirectToAction("index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -54,28 +55,31 @@ namespace UnitOfWork.Areas.Myadmin.Controllers
         public async Task<IActionResult> Logout()
         {
             await this.authenticationService.LogoutAsync();
-            return RedirectToAction(nameof(Login));
+           // return RedirectToAction(nameof(Login));
+            return RedirectToAction("Login", "UserAuthentication");
         }
 
 
 
 
-
-
-        //[AllowAnonymous]
         //public async Task<IActionResult> RegisterAdmin()
         //{
         //    RegistrationModel model = new RegistrationModel
         //    {
-        //        Username  = "admingrand",
-        //        Email     = "grandartgiant@gmail.com",
-        //        FirstName = "Grand",
-        //        LastName  = "Art",
-        //        Password  = "Admin12345#"
+        //        Username = "admingrand",
+        //        Email = "jcc@jccbweb.com",
+        //        FirstName = "shop",
+        //        LastName = "shop",
+        //        Password = "Shop12345#"
         //    };
         //    model.Role = "admin";
         //    var result = await this.authenticationService.RegisterAsync(model);
         //    return Ok(result);
         //}
+
+
+
+
+
     }
 }
